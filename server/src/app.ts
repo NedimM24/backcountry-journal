@@ -1,13 +1,11 @@
-import { log } from "console";
 import express from "express";
+import router from "./routes/commentRoutes";
 
 const app = express();
 
 const PORT = 3000;
 
-app.get('/', (req, res) => {
-    res.send("Hey you made it ;)")
-})
+app.use('/api', router);
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${3000}`);
