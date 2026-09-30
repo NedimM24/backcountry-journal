@@ -27,8 +27,10 @@ model Post {
   id          Int       @id @default(autoincrement())
   title       String
   bodyText    String
-  timeStamp   DateTime
-  isPublished Boolean
+  timeStamp   DateTime  @default(now())
+  coverImage  String?
+  category    String
+  isPublished Boolean   @default(false)
   comments    Comment[]
   author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId    Int
