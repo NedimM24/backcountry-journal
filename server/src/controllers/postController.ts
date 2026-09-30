@@ -3,6 +3,7 @@ import { prisma } from '../config/prisma';
 import { getAllPosts, 
          getAllPublishedPosts,
          getAllNonPublishedPosts,
+         getPostById
          } from '../queries/postQueries';
 
 //CREATE
@@ -24,6 +25,13 @@ export async function getPublishedPosts(req: Request, res: Response){
 export async function getNonPublishedPosts(req: Request, res: Response){
     const nonPublishedPosts = await getAllNonPublishedPosts();
     res.json(nonPublishedPosts);
+}
+
+//Function that will return a post based on id
+export async function getPost(req: Request, res: Response){
+    const id = Number(req.params.id);
+    const post = await getPostById(id);
+    res.json(post);
 }
 
 //UPDATE
