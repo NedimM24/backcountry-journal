@@ -1,5 +1,5 @@
 import express from "express";
-import router from "./routes/commentRoutes";
+import router from "./routes";
 
 const app = express();
 
