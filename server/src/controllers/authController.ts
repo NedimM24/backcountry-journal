@@ -45,6 +45,7 @@ import { getUserByEmail
  export function verifyToken(req: Request, res: Response, next: NextFunction){
     //GET AUTH HEADER VALUE
     const bearerHeader = req.headers['authorization'];
+    console.log("AUTH HEADER:", bearerHeader);
     //CHECK IF BEARER IS UNDEFINED
     if(typeof bearerHeader !== 'undefined'){
         //SEPERATES THE STRING 'BEARER' AND THE ACTUAL TOKEN
