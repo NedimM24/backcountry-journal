@@ -21,6 +21,13 @@ export async function getUserQuery(id: number){
     return user;
 }
 
+export async function getUserByEmail(email: string){
+    const user = await prisma.user.findUnique({
+        where: {email}
+    })
+    return user;
+}
+
 //UPDATE
 
 //DELETE

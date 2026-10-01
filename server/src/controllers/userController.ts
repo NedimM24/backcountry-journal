@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 import { prisma } from '../config/prisma';
+import bcrypt from 'bcrypt';
 import { createUserQuery,
          getUserQuery
  } from '../queries/userQueries';
@@ -7,14 +8,24 @@ import { createUserQuery,
 //CREATE
 export async function createUser(req: Request, res: Response){
     const {name, userName, email, password} = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await createUserQuery(
         name,
         userName,
         email,
-        password
+        hashedPassword
     );
 
-    res.status(201).json(newUser)
+    //RETURN NEW USER WITHOUT EXPOSING PW
+    const userResponse = {
+        id: newUser.id,
+        role: newUser.role,
+        name: newUser.name,
+        userName: newUser.userName,
+        email: newUser.email
+    }
+
+    res.status(201).json(userResponse)
 }
 
 //READ
