@@ -1,7 +1,9 @@
-import type { Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { getUserByEmail
  } from '../queries/userQueries';
+
+ import jwt from 'jsonwebtoken';
 
  export async function login(req: Request, res: Response){
     try{
@@ -19,8 +21,17 @@ import { getUserByEmail
         //COMPARE THE HASHED PW
         const isMatch = await bcrypt.compare(password, user.password)
             if(isMatch){
+                //GENERATE TOKEN
+                const token = jwt.sign(
+                    {
+                        userId: user.id,
+                        userRole: user.role
+                    },
+                    process.env.JWT_SECRET!
+                );
+                res.json({token});
+
                 console.log('Authentication Successful;');
-                res.status(200).json({message: "Successful authentication"})
             } else {
                 console.log('Invalid Password');
                 res.status(401).json({message: "Incorrect password"})
@@ -28,4 +39,26 @@ import { getUserByEmail
     } catch(error){
             console.log("Error durring password check", error);
     }  
+ }
+
+ //VERIFY TOKEN
+ export function verifyToken(req: Request, res: Response, next: NextFunction){
+    //GET AUTH HEADER VALUE
+    const bearerHeader = req.headers['authorization'];
+    //CHECK IF BEARER IS UNDEFINED
+    if(typeof bearerHeader !== 'undefined'){
+        //SEPERATES THE STRING 'BEARER' AND THE ACTUAL TOKEN
+        const bearer = bearerHeader.split(" ");
+
+        const bearerToken = bearer[1];
+        try {
+            jwt.verify(bearerToken, process.env.JWT_SECRET!);
+                next();
+        } catch (error) {
+            res.sendStatus(403)
+        }
+    } else {
+        //FORBIDDEN
+        res.sendStatus(403);
+    }
  }
