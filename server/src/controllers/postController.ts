@@ -4,7 +4,8 @@ import { getAllPosts,
          getAllPublishedPosts,
          getAllNonPublishedPosts,
          getPostById,
-         createPostQuery
+         createPostQuery,
+         updatePostQuery
          } from '../queries/postQueries';
 
 //CREATE
@@ -52,5 +53,22 @@ export async function getPost(req: Request, res: Response){
 }
 
 //UPDATE
+export async function updatePost(req: Request, res: Response){
+    let title = req.body.title;
+    let bodyText = req.body.bodyText;
+    let coverImage = req.body.coverImage;
+    let category = req.body.category;
+    let isPublished = req.body.isPublished;
+    let postId = Number(req.params.id)
+    const post = await updatePostQuery(
+        postId,
+        title, 
+        bodyText, 
+        coverImage, 
+        category, 
+        isPublished, 
+        );
+    res.json(post)
+}
 
 //DELETE

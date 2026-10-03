@@ -52,5 +52,27 @@ export async function getPostById(id: number){
 }
 
 //UPDATE
+export async function updatePostQuery(
+    postId: number,
+    title: string, 
+    bodyText: string,
+    coverImage: string,
+    category: string,
+    isPublished: boolean,
+    ){
+    const post = await prisma.post.update({
+        where: {
+            id: postId
+        },
+        data: {
+            title,
+            bodyText,
+            coverImage,
+            category,
+            isPublished,
+        }
+    });
+    return post;
+}
 
 //DELETE    
