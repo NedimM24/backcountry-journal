@@ -10,12 +10,19 @@ import { verifyToken } from '../controllers/authController';
 
 const postRouter = express.Router();
 
+//CREATE
+postRouter.post('/', verifyToken, createPost)
+
+//READ
 postRouter.get('/', verifyToken, getPosts)
 postRouter.get('/published', getPublishedPosts)
 postRouter.get('/non-published', getNonPublishedPosts)
 postRouter.get('/:id', getPost)
 
+//UPDATE
 
-postRouter.post('/', verifyToken, createPost)
+//DELETE
+
+
 
 export default postRouter;
