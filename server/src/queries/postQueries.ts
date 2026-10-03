@@ -1,6 +1,28 @@
 import { prisma } from "../config/prisma";
+import { User } from "../generated/prisma/client";
+import { DateTimeFieldRefInput } from "../generated/prisma/internal/prismaNamespace";
 
 //CREATE
+export async function createPostQuery(
+    title: string, 
+    bodyText: string,
+    coverImage: string,
+    category: string,
+    isPublished: boolean,
+    authorId: number
+    ){
+    const post = await prisma.post.create({
+        data: {
+            title,
+            bodyText,
+            coverImage,
+            category,
+            isPublished,
+            authorId
+        }
+    });
+    return post;
+}
 
 //READ
 export async function getAllPosts(){

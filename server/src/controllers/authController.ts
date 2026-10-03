@@ -53,8 +53,19 @@ import { getUserByEmail
 
         const bearerToken = bearer[1];
         try {
-            jwt.verify(bearerToken, process.env.JWT_SECRET!);
-                next();
+            const decoded = jwt.verify(
+                bearerToken,
+                process.env.JWT_SECRET!
+            ) as {
+                userId: number,
+                userRole: string;
+            };
+            console.log(decoded);
+
+            res.locals.userId = decoded.userId;
+            res.locals.userRole = decoded.userRole;
+
+            next();
         } catch (error) {
             res.sendStatus(403)
         }

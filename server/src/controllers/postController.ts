@@ -3,10 +3,27 @@ import { prisma } from '../config/prisma';
 import { getAllPosts, 
          getAllPublishedPosts,
          getAllNonPublishedPosts,
-         getPostById
+         getPostById,
+         createPostQuery
          } from '../queries/postQueries';
 
 //CREATE
+export async function createPost(req: Request, res: Response){
+    let title = req.body.title;
+    let bodyText = req.body.bodyText;
+    let coverImage = req.body.coverImage;
+    let category = req.body.category;
+    let isPublished = req.body.isPublished;
+    let authorId = res.locals.userId;
+    const post = await createPostQuery(
+        title, 
+        bodyText, 
+        coverImage, 
+        category, 
+        isPublished, 
+        authorId);
+    res.json(post)
+}
 
 //READ
 //Function that will return an array of ALL posts
