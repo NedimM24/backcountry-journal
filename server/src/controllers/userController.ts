@@ -1,5 +1,4 @@
 import type { Request, Response } from 'express';
-import { prisma } from '../config/prisma';
 import bcrypt from 'bcrypt';
 import { createUserQuery,
          getUserQuery

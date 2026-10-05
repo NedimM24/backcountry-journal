@@ -25,7 +25,7 @@ postRouter.get('/:id', getPost)
 postRouter.patch('/:id', verifyToken, updatePost)
 
 //DELETE
-postRouter.delete('/:id', deletePost)
+postRouter.delete('/:id', verifyToken, deletePost)
 
 
 

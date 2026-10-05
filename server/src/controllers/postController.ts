@@ -1,5 +1,4 @@
 import type { Request, Response } from 'express';
-import { prisma } from '../config/prisma';
 import { getAllPosts, 
          getAllPublishedPosts,
          getAllNonPublishedPosts,
@@ -8,7 +7,7 @@ import { getAllPosts,
          updatePostQuery,
          deletePostQuery
          } from '../queries/postQueries';
-import { log } from 'node:console';
+
 
 //CREATE
 export async function createPost(req: Request, res: Response){

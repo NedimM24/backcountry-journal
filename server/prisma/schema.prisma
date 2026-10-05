@@ -39,7 +39,7 @@ model Post {
 model Comment {
   id           Int      @id @default(autoincrement())
   text         String
-  timeStamp    DateTime
+  timeStamp    DateTime @default(now())
   commenter    User     @relation(fields: [commenterId], references: [id], onDelete: Cascade)
   commenterId  Int
   parentPost   Post     @relation(fields: [parentPostId], references: [id], onDelete: Cascade)
