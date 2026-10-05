@@ -60,6 +60,7 @@ import { getUserByEmail
                 userId: number,
                 userRole: string;
             };
+            console.log("Token Verified");
             console.log(decoded);
 
             res.locals.userId = decoded.userId;

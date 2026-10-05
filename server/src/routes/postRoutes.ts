@@ -3,7 +3,9 @@ import { getPosts,
          getPublishedPosts,
          getNonPublishedPosts,
          getPost,
-         createPost
+         createPost,
+         updatePost,
+         deletePost
          } from '../controllers/postController';
 
 import { verifyToken } from '../controllers/authController';
@@ -19,9 +21,11 @@ postRouter.get('/published', getPublishedPosts)
 postRouter.get('/non-published', getNonPublishedPosts)
 postRouter.get('/:id', getPost)
 
-//UPDATE
+//UPDATE 
+postRouter.patch('/:id', verifyToken, updatePost)
 
 //DELETE
+postRouter.delete('/:id', deletePost)
 
 
 

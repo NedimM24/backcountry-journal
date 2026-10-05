@@ -5,8 +5,10 @@ import { getAllPosts,
          getAllNonPublishedPosts,
          getPostById,
          createPostQuery,
-         updatePostQuery
+         updatePostQuery,
+         deletePostQuery
          } from '../queries/postQueries';
+import { log } from 'node:console';
 
 //CREATE
 export async function createPost(req: Request, res: Response){
@@ -72,3 +74,9 @@ export async function updatePost(req: Request, res: Response){
 }
 
 //DELETE
+export async function deletePost(req: Request, res: Response){
+    console.log("REACHED DELETE CONTROLLER");
+    const id = Number(req.params.id)
+    await deletePostQuery(id);
+    res.sendStatus(204)
+}

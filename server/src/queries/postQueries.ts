@@ -76,3 +76,8 @@ export async function updatePostQuery(
 }
 
 //DELETE    
+export async function deletePostQuery(id: number){
+    await prisma.post.delete({
+        where: {id}
+    });
+}
