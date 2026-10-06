@@ -32,7 +32,8 @@ import { deleteCommentQuery, getCommentsQuery,
  //DELETE
   export async function deleteComment(req: Request, res: Response){
    const commentId = Number(req.params.id);
-   deleteCommentQuery(commentId);
+   await deleteCommentQuery(commentId);
+   res.sendStatus(204);
  }
 
  

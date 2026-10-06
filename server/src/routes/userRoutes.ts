@@ -3,10 +3,12 @@ import { createUser,
          getUser
  } from '../controllers/userController';
 
+import { validateCreateUser } from '../validation/validateCreateUser';
+
 const userRouter = express.Router();
 
 //CREATE
-userRouter.post('/', createUser)
+userRouter.post('/', validateCreateUser, createUser)
 
 //READ
 userRouter.get('/:id', getUser)
