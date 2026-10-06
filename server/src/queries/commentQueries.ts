@@ -25,5 +25,14 @@ export async function  getCommentsQuery(id: number){
 }
 
 //UPDATE
+export async function updateCommentQuery(id: number, text: string){
+    const comment = await prisma.comment.update({
+        where: {id},
+        data: {
+            text
+        }
+    });
+    return comment
+}
 
 //DELETE

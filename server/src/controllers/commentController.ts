@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 import { getCommentsQuery,
          postCommentQuery,
+         updateCommentQuery,
  } from '../queries/commentQueries';
 
  //CREATE
@@ -17,11 +18,16 @@ import { getCommentsQuery,
  export async function getComments(req: Request, res: Response){
     const postId = Number(req.params.id);
     const comments = await getCommentsQuery(postId);
-   
     res.json(comments);
  }
 
  //UPDATE
+ export async function updateComment(req: Request, res: Response){
+   const commentId = Number(req.params.id);
+   const updatedComment = req.body.text;
+   const newComment = await updateCommentQuery(commentId, updatedComment);
+   res.json(newComment)
+ }
 
  //DELETE
 
