@@ -1,5 +1,5 @@
 import express from 'express';
-import { getComments, 
+import { deleteComment, getComments, 
          postComment,
          updateComment
 
@@ -18,5 +18,6 @@ commentRouter.get('/posts/:id/comments', verifyToken, getComments)
 commentRouter.patch('/comments/:id', verifyToken, updateComment)
 
 //DELETE
+commentRouter.delete('/comments/:id', verifyToken, deleteComment)
 
 export default commentRouter;

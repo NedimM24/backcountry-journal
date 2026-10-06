@@ -36,3 +36,8 @@ export async function updateCommentQuery(id: number, text: string){
 }
 
 //DELETE
+export async function deleteCommentQuery(id: number){
+    await prisma.comment.delete({
+        where: {id}
+    });
+}

@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { getCommentsQuery,
+import { deleteCommentQuery, getCommentsQuery,
          postCommentQuery,
          updateCommentQuery,
  } from '../queries/commentQueries';
@@ -30,5 +30,9 @@ import { getCommentsQuery,
  }
 
  //DELETE
+  export async function deleteComment(req: Request, res: Response){
+   const commentId = Number(req.params.id);
+   deleteCommentQuery(commentId);
+ }
 
  
