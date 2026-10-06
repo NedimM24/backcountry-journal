@@ -9,11 +9,12 @@ import { getPosts,
          } from '../controllers/postController';
 
 import { verifyToken } from '../controllers/authController';
+import { validateCreatePost } from '../validation/validateCreatePost';
 
 const postRouter = express.Router();
 
 //CREATE
-postRouter.post('/', verifyToken, createPost)
+postRouter.post('/', verifyToken, validateCreatePost, createPost)
 
 //READ
 postRouter.get('/', verifyToken, getPosts)
