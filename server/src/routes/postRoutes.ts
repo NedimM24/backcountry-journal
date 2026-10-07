@@ -10,6 +10,7 @@ import { getPosts,
 
 import { verifyToken } from '../controllers/authController';
 import { validateCreatePost } from '../validation/validateCreatePost';
+import { validateUpdatePost } from '../validation/validateUpdatePost';
 
 const postRouter = express.Router();
 
@@ -18,12 +19,12 @@ postRouter.post('/', verifyToken, validateCreatePost, createPost)
 
 //READ
 postRouter.get('/', verifyToken, getPosts)
-postRouter.get('/published', getPublishedPosts)
-postRouter.get('/non-published', getNonPublishedPosts)
-postRouter.get('/:id', getPost)
+postRouter.get('/published', verifyToken, getPublishedPosts)
+postRouter.get('/non-published', verifyToken, getNonPublishedPosts)
+postRouter.get('/:id', verifyToken, getPost)
 
 //UPDATE 
-postRouter.patch('/:id', verifyToken, updatePost)
+postRouter.patch('/:id', verifyToken, validateUpdatePost, updatePost)
 
 //DELETE
 postRouter.delete('/:id', verifyToken, deletePost)
