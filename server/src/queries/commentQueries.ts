@@ -24,6 +24,13 @@ export async function  getCommentsQuery(id: number){
     return comments;
 }
 
+export async function  getCommentByIdQuery(id: number){
+    const comment = await prisma.comment.findUnique({
+        where: {id}
+    });
+    return comment;
+}
+
 //UPDATE
 export async function updateCommentQuery(id: number, text: string){
     const comment = await prisma.comment.update({
