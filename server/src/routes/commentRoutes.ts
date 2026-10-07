@@ -5,11 +5,12 @@ import { deleteComment, getComments,
 
  } from '../controllers/commentController';
 import { verifyToken } from '../controllers/authController';
+import { validateCreateComment } from '../validation/validateCreateComment';
 
 const commentRouter = express.Router();
 
 //CREATE
-commentRouter.post('/posts/:id/comments', verifyToken, postComment)
+commentRouter.post('/posts/:id/comments', verifyToken, validateCreateComment, postComment)
 
 //READ
 commentRouter.get('/posts/:id/comments', verifyToken, getComments)
