@@ -6,6 +6,7 @@ import { deleteComment, getComments,
  } from '../controllers/commentController';
 import { verifyToken } from '../controllers/authController';
 import { validateCreateComment } from '../validation/validateCreateComment';
+import { validateUpdateComment } from '../validation/validateUpdateComment';
 
 const commentRouter = express.Router();
 
@@ -16,7 +17,7 @@ commentRouter.post('/posts/:id/comments', verifyToken, validateCreateComment, po
 commentRouter.get('/posts/:id/comments', verifyToken, getComments)
 
 //UPDATE
-commentRouter.patch('/comments/:id', verifyToken, updateComment)
+commentRouter.patch('/comments/:id', verifyToken, validateUpdateComment, updateComment)
 
 //DELETE
 commentRouter.delete('/comments/:id', verifyToken, deleteComment)

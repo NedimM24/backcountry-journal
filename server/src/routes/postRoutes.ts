@@ -29,6 +29,4 @@ postRouter.patch('/:id', verifyToken, validateUpdatePost, updatePost)
 //DELETE
 postRouter.delete('/:id', verifyToken, deletePost)
 
-
-
 export default postRouter;
