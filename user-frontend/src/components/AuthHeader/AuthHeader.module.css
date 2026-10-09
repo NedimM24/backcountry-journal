@@ -1,0 +1,23 @@
+.header{
+    width: 100%;
+    height: clamp(160px, 22vw, 220px);
+    margin: 0;
+    padding: 0;
+    color: white;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+    
+}
+
+.header h1,
+.header h4 {
+    margin: 0;
+}

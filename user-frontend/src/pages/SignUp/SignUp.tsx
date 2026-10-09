@@ -1,11 +1,12 @@
 import { AuthForm } from "../../components/Auth/AuthForm";
-function SignUp(){
-    return(
-        <div>
-            <AuthForm mode="signup"/>
-        </div>
-    )
+import { AuthHeader } from "../../components/AuthHeader/AuthHeader";
+function SignUp() {
+  return (
+    <div>
+      <AuthHeader />
+      <AuthForm mode="signup" />
+    </div>
+  );
 }
 
 export default SignUp;
-
