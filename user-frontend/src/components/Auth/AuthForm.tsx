@@ -11,7 +11,6 @@ export function AuthForm({ mode }: AuthFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [loginIdentifier, setLoginIdentifier] = useState("");
   const navigate = useNavigate();
 
   //NEED THIS CONDITIONAL TO CHOOSE WHAT FORM TO DISPLAY
@@ -22,7 +21,7 @@ export function AuthForm({ mode }: AuthFormProps) {
   //OTHERWISE WE ARE CONFIRMING THE LOGIN TO VERIFY USER AND ALLOW ACCESS
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    
+
     //SIGN UP HANDLER
     if (isSignUp) {
       //CONFIRM PW CHECK
@@ -41,7 +40,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 
       try {
         //SENDING A POST REQUEST TO MY DB
-        const response = await fetch("http://localhost:3000/users", {
+        const response = await fetch("http://localhost:3000/api/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -50,14 +49,47 @@ export function AuthForm({ mode }: AuthFormProps) {
         });
 
         const data = await response.json();
+
+        if (!response.ok) {
+          console.log(data.message || "Signup Failed");
+          return;
+        }
+
         console.log(data);
         navigate("/login");
       } catch (error) {
         console.log("Error creating user:", error);
       }
+
       //LOGIN HANDLER
     } else {
-      console.log("hi");
+      try {
+        const response = await fetch("http://localhost:3000/api/auth/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          console.log(data.message || "Login Failed");
+          return;
+        }
+
+        //I AM SAVING THER JWT RETURNED BY THE BACK END TO LOCALSTORAGE
+        localStorage.setItem("token", data.token);
+
+        //IF ALL GOES WELL, SEND THE USER TO HOME PAGE
+        navigate("/");
+      } catch (error) {
+        console.log("Error logging in:", error);
+      }
     }
   }
 
@@ -140,13 +172,13 @@ export function AuthForm({ mode }: AuthFormProps) {
       {!isSignUp && (
         <>
           <label>
-            Username or Email:
+            Email:
             <input
-              type="text"
-              placeholder="Enter your username or email"
+              type="email"
+              placeholder="Enter your email"
               required
-              value={loginIdentifier}
-              onChange={(e) => setLoginIdentifier(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
 

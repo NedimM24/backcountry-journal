@@ -8,7 +8,9 @@ export function AuthHeader() {
       style={{ backgroundImage: `url(${mountainImage})` }}
     >
       <h1>Join the Backcountry Journal</h1>
-      <h4>Join our community</h4>
+      <h4>Join our community, get outside, explore</h4>
+      <br />
+      <h4>Go</h4>
     </header>
   );
 }
