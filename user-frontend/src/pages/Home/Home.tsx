@@ -1,5 +1,6 @@
 import logo from "../../assets/backcountry-logo-green.svg";
 import styles from "./Home.module.css";
+import { Navbar } from "../../components/Navbar/Navbar";
 import cartoonMountainImageLarge from "../../assets/trail_background_2440x1440.png";
 import cartoonMountainImageSmall from "../../assets/trail_background_iphone_landscape_2556x1179.png";
 
@@ -13,6 +14,7 @@ function Home() {
           alt="Baclcountry Journal Logo"
           className={styles.logo}
         />
+        <Navbar></Navbar>
       </div>
 
       {/* BOTTOM CONTAINER */}
