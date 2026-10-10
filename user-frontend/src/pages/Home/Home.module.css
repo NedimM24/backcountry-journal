@@ -1,0 +1,36 @@
+.logoContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.logo{
+    width: clamp(290px, 50vw, 900px);
+    height: auto;
+}
+
+.bottomContainer{
+    background-color: var(--color-card);
+    min-height: 100vh;
+    box-shadow: 0 -4px 10px rgba(32, 53, 46, 0.12);
+}
+
+.header{
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    min-height: 200px;
+    padding: 1rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 1rem;
+   
+}
+
+.header h2,
+.header h6 {
+  margin: 0;
+}
+
+
