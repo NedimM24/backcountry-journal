@@ -5,7 +5,8 @@ import { getPosts,
          getPost,
          createPost,
          updatePost,
-         deletePost
+         deletePost,
+         getFeaturedPost
          } from '../controllers/postController';
 
 import { verifyToken } from '../controllers/authController';
@@ -21,6 +22,7 @@ postRouter.post('/', verifyToken, isAdmin, validateCreatePost, createPost)
 //READ
 postRouter.get('/', verifyToken, getPosts)
 postRouter.get('/published', verifyToken, getPublishedPosts)
+postRouter.get('/featured', verifyToken, getFeaturedPost)
 postRouter.get('/non-published', verifyToken, isAdmin, getNonPublishedPosts)
 postRouter.get('/:id', verifyToken, getPost)
 

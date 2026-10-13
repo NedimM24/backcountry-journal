@@ -5,7 +5,8 @@ import { getAllPosts,
          getPostById,
          createPostQuery,
          updatePostQuery,
-         deletePostQuery
+         deletePostQuery,
+         getFeaturedPostById
          } from '../queries/postQueries';
 
 
@@ -51,6 +52,20 @@ export async function getPost(req: Request, res: Response){
     const id = Number(req.params.id);
     const post = await getPostById(id);
     res.json(post);
+}
+
+//Function that will return the featured welcome post. Had an id of 5
+export async function getFeaturedPost(req: Request, res: Response){
+    try {
+         const post = await getFeaturedPostById(5);
+        if(!post){
+            res.status(404).json({ message: "Featured post not found" });
+            return;
+        }
+        res.json(post);
+    } catch (error) {
+        res.status(500).json({ message: "Failed to retrieve featured post" });
+    }
 }
 
 //UPDATE

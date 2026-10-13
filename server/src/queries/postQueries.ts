@@ -51,6 +51,14 @@ export async function getPostById(id: number){
     return post;
 }
 
+export async function getFeaturedPostById(id: number){
+    const featuredPost = await prisma.post.findUnique({
+        where: {id}
+    });
+    return featuredPost;
+}
+
+
 //UPDATE
 export async function updatePostQuery(
     postId: number,
