@@ -66,12 +66,6 @@ export async function getPublishedPostsByCategory(req: Request, res: Response){
             })
         }
 
-        if(!category){
-            return res.status(400).json({
-                message: "Category is required"
-            })
-        }
-
         const posts = await getPublishedPostByCategoryQuery(category)
         res.json(posts);
     } catch (error) {
