@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 
 export function FeaturedCard() {
-  const [post, setPost] = useState(null);
+  type FeaturedPost = {
+    title: string;
+    coverImage: string | null;
+    category: string;
+    timestamp: string;
+  };
+
+  const [post, setPost] = useState<FeaturedPost | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -41,5 +48,13 @@ export function FeaturedCard() {
     return <p>Loading featured post....</p>;
   }
 
-  return <div>{post.title}</div>;
+  return (
+    <div>
+      <h2>Feature Blog</h2>
+      {post.coverImage}
+      {post.title}
+      {post.category}
+      {post.timestamp}
+    </div>
+  );
 }
