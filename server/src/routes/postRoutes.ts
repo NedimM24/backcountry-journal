@@ -6,7 +6,8 @@ import { getPosts,
          createPost,
          updatePost,
          deletePost,
-         getFeaturedPost
+         getFeaturedPost,
+         getPublishedPostsByCategory
          } from '../controllers/postController';
 
 import { verifyToken } from '../controllers/authController';
@@ -25,6 +26,7 @@ postRouter.get('/published', verifyToken, getPublishedPosts)
 postRouter.get('/featured', verifyToken, getFeaturedPost)
 postRouter.get('/non-published', verifyToken, isAdmin, getNonPublishedPosts)
 postRouter.get('/:id', verifyToken, getPost)
+postRouter.get("/category/:category", verifyToken, getPublishedPostsByCategory)
 
 //UPDATE 
 postRouter.patch('/:id', verifyToken, isAdmin, validateUpdatePost, updatePost)

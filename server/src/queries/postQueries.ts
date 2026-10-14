@@ -44,6 +44,16 @@ export async function getAllNonPublishedPosts(){
     return nonPublishedPosts;
 }
 
+export async function getPublishedPostByCategoryQuery(category: string){
+    const publishedPosts = await prisma.post.findMany({
+        where: {
+            category: category,
+            isPublished: true,
+        }
+    });
+    return publishedPosts;
+}
+
 export async function getPostById(id: number){
     const post = await prisma.post.findUnique({
         where: {id}

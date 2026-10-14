@@ -6,7 +6,8 @@ import { getAllPosts,
          createPostQuery,
          updatePostQuery,
          deletePostQuery,
-         getFeaturedPostById
+         getFeaturedPostById,
+         getPublishedPostByCategoryQuery
          } from '../queries/postQueries';
 
 
@@ -52,6 +53,32 @@ export async function getPost(req: Request, res: Response){
     const id = Number(req.params.id);
     const post = await getPostById(id);
     res.json(post);
+}
+
+//Function that will return all published posts based on the category
+export async function getPublishedPostsByCategory(req: Request, res: Response){
+    try {
+        const category = req.params.category;
+
+        if(typeof category !== "string"){
+            return res.status(400).json({
+                message: "Not a valid category."
+            })
+        }
+
+        if(!category){
+            return res.status(400).json({
+                message: "Category is required"
+            })
+        }
+
+        const posts = await getPublishedPostByCategoryQuery(category)
+        res.json(posts);
+    } catch (error) {
+        res.status(500).json({
+            message: "Failed to retrieve posts by category"
+        })
+    }
 }
 
 //Function that will return the featured welcome post. Had an id of 5
