@@ -5,17 +5,20 @@ import { FeaturedCard } from "../../components/BlogCard/FeaturedCard";
 import { BlogGrid } from "../../components/BlogCard/BlogGrid";
 import cartoonMountainImageLarge from "../../assets/trail_background_2440x1440.png";
 import cartoonMountainImageSmall from "../../assets/trail_background_iphone_landscape_2556x1179.png";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <div>
       {/* Logo */}
       <div className={styles.logoContainer}>
-        <img
-          src={logo}
-          alt="Baclcountry Journal Logo"
-          className={styles.logo}
-        />
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Backcountry Journal Logo"
+            className={styles.logo}
+          />
+        </Link>
         <Navbar></Navbar>
       </div>
 
@@ -36,8 +39,8 @@ function Home() {
         {/* MAIN CONTENT WITH ALL THE BLOG POSTS */}
         <main>
           {/* FEATURED POST SAME ACCROSS ALL CATEGORIES */}
-          <FeaturedCard></FeaturedCard>
-          <BlogGrid></BlogGrid>
+          <FeaturedCard />
+          <BlogGrid />
         </main>
       </div>
     </div>

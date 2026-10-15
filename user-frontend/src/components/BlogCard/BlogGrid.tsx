@@ -9,24 +9,30 @@ type BlogPost = {
   timeStamp: string;
 };
 
-export function BlogGrid() {
+type BlogPostProps = {
+  category?: string;
+};
+
+export function BlogGrid({ category }: BlogPostProps) {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  //EITHER A CERTAIN CATEGORY(CLICKED BY THE USER ON THE FRONTEND NAVBAR) OR ALL
+  const url = category
+    ? `http://localhost:3000/api/posts/category/${encodeURIComponent(category)}`
+    : "http://localhost:3000/api/posts/published";
 
   useEffect(() => {
     async function fetchAllPosts() {
       try {
         const token = localStorage.getItem("token");
         //RETURNS ALL PUBLISHED POSTS
-        const response = await fetch(
-          "http://localhost:3000/api/posts/published",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
         }
@@ -41,7 +47,7 @@ export function BlogGrid() {
       }
     }
     fetchAllPosts();
-  }, []);
+  }, [url]);
 
   if (error) {
     return <p>{error}</p>;

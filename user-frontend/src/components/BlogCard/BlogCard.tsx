@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+
 type BlogPost = {
+  id: number;
   title: string;
   coverImage: string | null;
   category: string;
@@ -18,6 +21,7 @@ export function BlogCard({ post }: BlogCardProps) {
       <p>
         <time>{post.timeStamp}</time>
       </p>
+      <Link to={`/posts/${post.id}`}>Read Blog</Link>
     </div>
   );
 }
