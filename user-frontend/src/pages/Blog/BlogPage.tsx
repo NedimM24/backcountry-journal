@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../../components/Navbar/Navbar";
+import Comments from "../../components/Comments/Comments";
 import styles from "../Home/Home.module.css";
 import logo from "../../assets/backcountry-logo-green.svg";
 import { useEffect, useState } from "react";
@@ -78,6 +79,7 @@ function BlogPage() {
       </main>
 
       {/* COMMENTS WILL GO HERE */}
+      <Comments postId={post.id} />
     </div>
   );
 }
