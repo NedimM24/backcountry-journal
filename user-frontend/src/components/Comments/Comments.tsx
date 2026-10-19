@@ -6,6 +6,10 @@ type Comment = {
   timeStamp: string;
   commenterId: number;
   parentPostId: number;
+  commenter: {
+    name: string;
+    userName: string;
+  };
 };
 
 type CommentsProps = {
@@ -18,7 +22,7 @@ function Comments({ postId }: CommentsProps) {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchAllPosts() {
+    async function fetchPostComments() {
       try {
         const token = localStorage.getItem("token");
         //RETURNS ALL COMMENTS TIED TO POST ID
@@ -44,7 +48,7 @@ function Comments({ postId }: CommentsProps) {
         }
       }
     }
-    fetchAllPosts();
+    fetchPostComments();
   }, [postId]);
 
   if (error) {
@@ -58,6 +62,7 @@ function Comments({ postId }: CommentsProps) {
       <div>
         {comments.map((comment) => (
           <div key={comment.id}>
+            <h5>{comment.commenter.userName}</h5>
             <p>{comment.text}</p>
           </div>
         ))}
