@@ -1,0 +1,18 @@
+.mobileNav{
+    display: block;
+}
+
+.desktopNav{
+    display: none;
+}
+
+/*SWITCH TO FULL SIDEBAR ONCE WE EXIT MOBILE MODE*/
+@media(min-width: 900px){
+    .mobileNav{
+        display: none;
+    }
+
+    .desktopNav{
+        display: block;
+    }
+}
