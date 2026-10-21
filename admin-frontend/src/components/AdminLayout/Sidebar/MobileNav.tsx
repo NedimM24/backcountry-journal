@@ -11,17 +11,27 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <button onClick={() => setOpen(!open)} aria-expanded={open}>
-        Menu
+      <button
+        className="btn"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+      >
+        ≡
       </button>
 
       {open && (
         <div>
           <nav>
             <Link to="/">Dashboard</Link>
-            <Link to="/new-post">New Post</Link>
-            <Link to="/comments">Comments</Link>
+            <Link to="/posts/new">New Post</Link>
             <div>
+              <a
+                href="place vervel front end here"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Public Site
+              </a>
               <button onClick={handleLogout}>Logout</button>
             </div>
           </nav>

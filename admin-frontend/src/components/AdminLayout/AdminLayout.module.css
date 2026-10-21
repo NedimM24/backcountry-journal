@@ -1,3 +1,7 @@
+.layout{
+    min-height: 100vh;
+}
+
 .mobileNav{
     display: block;
 }
@@ -6,13 +10,29 @@
     display: none;
 }
 
+.main{
+    min-width: 0;
+    padding: 1rem;
+}
+
 /*SWITCH TO FULL SIDEBAR ONCE WE EXIT MOBILE MODE*/
 @media(min-width: 900px){
+    .layout{
+        display: flex;
+        align-items: stretch;
+    }
+
     .mobileNav{
         display: none;
     }
 
     .desktopNav{
         display: block;
+        flex: 0 0 260px;
+    }
+
+    .main{
+        flex: 1;
+        padding: 2rem;
     }
 }
