@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthHeader } from "../../components/AuthHeader/AuthHeader";
 
 type LoginResponse = {
   token?: string;
@@ -52,6 +53,7 @@ export function Login() {
 
       //I AM SAVING THER JWT RETURNED BY THE BACK END TO LOCALSTORAGE
       localStorage.setItem("token", data.token);
+      localStorage.setItem("role", data.role);
 
       //IF ALL GOES WELL, SEND THE USER TO HOME PAGE
       navigate("/", { replace: true });
@@ -61,37 +63,40 @@ export function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <h1>Admin Login</h1>
-        <p>Log in to manage Backcountry Journal</p>
-      </div>
+    <div>
+      <AuthHeader />
+      <form onSubmit={handleSubmit}>
+        <div>
+          <h1>Admin Login</h1>
+          <p>Log in to manage Backcountry Journal</p>
+        </div>
 
-      <label>
-        Email:
-        <input
-          type="email"
-          placeholder="Enter your email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </label>
+        <label>
+          Email:
+          <input
+            type="email"
+            placeholder="Enter your email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
 
-      <label>
-        Password:
-        <input
-          type="password"
-          placeholder="Enter your password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </label>
+        <label>
+          Password:
+          <input
+            type="password"
+            placeholder="Enter your password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
 
-      {error && <p role="alert">{error}</p>}
+        {error && <p role="alert">{error}</p>}
 
-      <button type="submit">Login</button>
-    </form>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   );
 }
