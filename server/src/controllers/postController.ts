@@ -7,7 +7,9 @@ import { getAllPosts,
          updatePostQuery,
          deletePostQuery,
          getFeaturedPostById,
-         getPublishedPostByCategoryQuery
+         getPublishedPostByCategoryQuery,
+         getPostCountQuery,
+         getDraftsCountQuery
          } from '../queries/postQueries';
 
 
@@ -86,6 +88,30 @@ export async function getFeaturedPost(req: Request, res: Response){
         res.json(post);
     } catch (error) {
         res.status(500).json({ message: "Failed to retrieve featured post" });
+    }
+}
+
+//Function that will return the post count. Used in  admin front
+export async function getPostCount(req: Request, res: Response){
+    try {
+        const postCount = await getPostCountQuery();
+        res.status(200).json({
+            totalPosts: postCount,
+        })
+    } catch (error) {
+        res.status(500).json({ message: "Failed to retrieve post count" });
+    }
+}
+
+//Function that will return the drafts count. Used in  admin front
+export async function getDraftsCount(req: Request, res: Response){
+    try {
+        const draftCount = await getDraftsCountQuery();
+        res.status(200).json({
+            totalDrafts: draftCount,
+        })
+    } catch (error) {
+        res.status(500).json({ message: "Failed to retrieve draft count" });
     }
 }
 

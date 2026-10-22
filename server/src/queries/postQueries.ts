@@ -68,6 +68,18 @@ export async function getFeaturedPostById(id: number){
     return featuredPost;
 }
 
+export async function getPostCountQuery(){
+    const postCount = await prisma.post.count();
+    return postCount;
+}
+
+export async function getDraftsCountQuery(){
+    const draftCount = await prisma.post.count({
+        where: {isPublished: false}
+    });
+    return draftCount;
+}
+
 
 //UPDATE
 export async function updatePostQuery(

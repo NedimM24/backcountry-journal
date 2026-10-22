@@ -19,7 +19,15 @@ export async function postCommentQuery(
 //READ
 export async function  getCommentsQuery(id: number){
     const comments = await prisma.comment.findMany({
-        where: {parentPostId: id}
+        where: {parentPostId: id},
+        include: {
+            commenter: {
+                select: {
+                    name: true,
+                    userName: true,
+                }
+            }
+        }
     });
     return comments;
 }
@@ -28,6 +36,11 @@ export async function  getCommentByIdQuery(id: number){
     const comment = await prisma.comment.findUnique({
         where: {id}
     });
+    return comment;
+}
+
+export async function getCommentCountQuery(){
+    const comment = await prisma.comment.count();
     return comment;
 }
 

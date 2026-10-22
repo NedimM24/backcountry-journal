@@ -1,5 +1,5 @@
 import type { Request, Response } from 'express';
-import { deleteCommentQuery, getCommentsQuery,
+import { deleteCommentQuery, getCommentCountQuery, getCommentsQuery,
          postCommentQuery,
          updateCommentQuery,
  } from '../queries/commentQueries';
@@ -20,6 +20,19 @@ import { deleteCommentQuery, getCommentsQuery,
     const comments = await getCommentsQuery(postId);
     res.json(comments);
  }
+
+ //Function that will return the comments count. Used in  admin front
+ export async function getCommentCount(req: Request, res: Response){
+     try {
+         const commentCount = await getCommentCountQuery();
+         res.status(200).json({
+             totalComments: commentCount,
+         })
+     } catch (error) {
+         res.status(500).json({ message: "Failed to retrieve comment count" });
+     }
+ }
+ 
 
  //UPDATE
  export async function updateComment(req: Request, res: Response){

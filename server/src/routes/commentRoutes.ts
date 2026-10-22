@@ -1,5 +1,5 @@
 import express from 'express';
-import { deleteComment, getComments, 
+import { deleteComment, getCommentCount, getComments, 
          postComment,
          updateComment
 
@@ -8,6 +8,7 @@ import { verifyToken } from '../controllers/authController';
 import { validateCreateComment } from '../validation/validateCreateComment';
 import { validateUpdateComment } from '../validation/validateUpdateComment';
 import { isCommentOwner } from '../middleware/isCommentOwner';
+import { isAdmin } from '../middleware/isAdmin';
 
 const commentRouter = express.Router();
 
@@ -16,6 +17,7 @@ commentRouter.post('/posts/:id/comments', verifyToken, validateCreateComment, po
 
 //READ
 commentRouter.get('/posts/:id/comments', verifyToken, getComments)
+commentRouter.get('/comments/count', verifyToken, isAdmin, getCommentCount)
 
 //UPDATE
 commentRouter.patch('/comments/:id', verifyToken, isCommentOwner, validateUpdateComment, updateComment)
