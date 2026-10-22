@@ -1,0 +1,11 @@
+.statCard{
+    width: 30vw;
+    height: auto;
+    border: solid 1px lightgray;
+    background-color: white;
+    border-radius: 3px;
+    padding: .5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
