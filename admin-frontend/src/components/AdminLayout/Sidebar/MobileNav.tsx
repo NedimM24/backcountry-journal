@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import styles from "./MobileNav.module.css";
 
 export function MobileNav() {
   const navigate = useNavigate();
@@ -11,31 +12,99 @@ export function MobileNav() {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <button
-        className="btn"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-      >
-        ≡
-      </button>
+      <header className={styles.mobileHeader}>
+        <button
+          type="button"
+          className="btn"
+          onClick={() => setOpen((current) => !current)}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          aria-label={open ? "Close menu" : "Open menu"}
+        >
+          ≡
+        </button>
+        <h2>Backcountry Journal will add logo here</h2>
+      </header>
 
       {open && (
-        <div>
-          <nav>
-            <Link to="/">Dashboard</Link>
-            <Link to="/posts/new">New Post</Link>
-            <div>
-              <a
-                href="place vervel front end here"
-                target="_blank"
-                rel="noopener noreferrer"
+        <>
+          <button
+            type="button"
+            className={styles.backdrop}
+            onClick={() => setOpen(false)}
+            aria-label="Close Navigation"
+          />
+          <aside
+            className={styles.container}
+            id="mobile-navigation"
+            aria-label="Mobile Navigation"
+          >
+            <button
+              type="button"
+              className={styles.closeBtn}
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+            >
+              X
+            </button>
+            <nav className={styles.links}>
+              <NavLink
+                to="/"
+                end
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  isActive ? styles.activeLink : styles.navLink
+                }
               >
-                View Public Site
-              </a>
-              <button onClick={handleLogout}>Logout</button>
-            </div>
-          </nav>
-        </div>
+                Dashboard
+              </NavLink>
+              <NavLink
+                to="/posts"
+                end
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  isActive ? styles.activeLink : styles.navLink
+                }
+              >
+                All Posts
+              </NavLink>
+              <NavLink
+                to="/posts/new-post"
+                end
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  isActive ? styles.activeLink : styles.navLink
+                }
+              >
+                New Post
+              </NavLink>
+
+              <NavLink
+                to="/posts/drafts"
+                end
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  isActive ? styles.activeLink : styles.navLink
+                }
+              >
+                Drafts
+              </NavLink>
+
+              <div className={styles.bottomLinks}>
+                <a
+                  href="place vervel front end here"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  🌐 View Public Site
+                </a>
+                <button type="button" className="btn" onClick={handleLogout}>
+                  ➜] Logout
+                </button>
+              </div>
+            </nav>
+          </aside>
+        </>
       )}
     </div>
   );

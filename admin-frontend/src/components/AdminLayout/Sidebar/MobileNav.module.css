@@ -1,0 +1,95 @@
+.container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: min(80vw, 320px);
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 1001;
+
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-header);
+    height: 100vh;
+    padding: 1rem;
+
+    animation: slideIn 250ms ease-in-out;
+}
+.mobileHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--color-header);
+    color: white;
+}
+
+.backdrop{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.closeBtn{
+    align-self: flex-start;
+    padding: .5rem;
+    border: none;
+    background: transparent;
+    color: white;
+    font: inherit;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.links{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 1rem;
+    flex: 1;
+   
+}
+
+.bottomLinks{
+   margin-top: auto;
+   padding-top: 1rem;
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+   border-top: 1px solid white;
+}
+
+.navLink,
+.activeLink {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 6px;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  padding: .5rem;
+}
+
+.navLink:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.activeLink{
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+@keyframes slideIn {
+    from{
+        transform: translateX(-100%);
+    }
+    to{
+        transform: translateX(0);
+    }
+}
