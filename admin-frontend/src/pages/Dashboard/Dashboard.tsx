@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { StatCard } from "../../components/StatCard/StatCard";
 import styles from "./Dashboard.module.css";
+import { PostsTable } from "../../components/PostsTable/PostsTable";
 
 function Dashboard() {
   const [postCount, setPostCount] = useState(0);
@@ -99,6 +100,9 @@ function Dashboard() {
         <StatCard title={"Total posts"} count={postCount} />
         <StatCard title={"Drafts"} count={draftCount} />
         <StatCard title={"Comments"} count={commentCount} />
+      </div>
+      <div className={styles.postTable}>
+        <PostsTable />
       </div>
     </div>
   );

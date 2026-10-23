@@ -19,12 +19,18 @@
 .mobileHeader{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: 1rem;
     padding: 1rem;
     background-color: var(--color-header);
     color: white;
 }
+
+.logo{
+    width: clamp(290px, 50vw, 900px);
+    height: auto;
+}
+
 
 .backdrop{
     position: fixed;

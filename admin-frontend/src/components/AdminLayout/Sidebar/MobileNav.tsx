@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./MobileNav.module.css";
+import logo from "../../../assets/backcountry-logo-light.svg";
 
 export function MobileNav() {
   const navigate = useNavigate();
@@ -23,7 +24,11 @@ export function MobileNav() {
         >
           ≡
         </button>
-        <h2>Backcountry Journal will add logo here</h2>
+        <img
+          src={logo}
+          alt="Backcountry Journal Logo"
+          className={styles.logo}
+        />
       </header>
 
       {open && (
