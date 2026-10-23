@@ -80,6 +80,13 @@ export async function getDraftsCountQuery(){
     return draftCount;
 }
 
+export async function getRecentPostsQuery(){
+    const recentPosts = await prisma.post.findMany({
+        orderBy: {timeStamp: "desc"},
+        take: 6,
+    });
+    return recentPosts;
+}
 
 //UPDATE
 export async function updatePostQuery(

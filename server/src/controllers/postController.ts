@@ -9,8 +9,10 @@ import { getAllPosts,
          getFeaturedPostById,
          getPublishedPostByCategoryQuery,
          getPostCountQuery,
-         getDraftsCountQuery
+         getDraftsCountQuery,
+         getRecentPostsQuery
          } from '../queries/postQueries';
+import { log } from 'console';
 
 
 //CREATE
@@ -112,6 +114,17 @@ export async function getDraftsCount(req: Request, res: Response){
         })
     } catch (error) {
         res.status(500).json({ message: "Failed to retrieve draft count" });
+    }
+}
+
+//Function that will return 6 most recent posts. Used in  admin front
+export async function getRecentPosts(req: Request, res: Response){
+    try {
+        const recentPosts = await getRecentPostsQuery();
+        res.json(recentPosts);
+    } catch (error) {
+        console.error("Failed to retrieve posts:", error)
+        res.status(500).json({ message: "Failed to retrieve recent posts" });
     }
 }
 
