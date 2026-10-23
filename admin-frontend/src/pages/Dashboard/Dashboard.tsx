@@ -1,16 +1,104 @@
+import { useState, useEffect } from "react";
 import { StatCard } from "../../components/StatCard/StatCard";
 import styles from "./Dashboard.module.css";
 
 function Dashboard() {
+  const [postCount, setPostCount] = useState(0);
+  const [draftCount, setDraftCount] = useState(0);
+  const [commentCount, setCommentCount] = useState(0);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchCounts() {
+      setError(null);
+      //GET COUNT FOR POSTS
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(`http://localhost:3000/api/posts/count`, {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch post");
+        }
+        const data = await response.json();
+        setPostCount(data.totalPosts);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unexpected error occured");
+        }
+      }
+
+      //GET COUNT FOR DRAFTS
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `http://localhost:3000/api/posts/non-published/count`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch post");
+        }
+        const data = await response.json();
+        setDraftCount(data.totalDrafts);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unexpected error occured");
+        }
+      }
+
+      //GET COUNT FOR COMMENTS
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+          `http://localhost:3000/api/comments/count`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch post");
+        }
+        const data = await response.json();
+        setCommentCount(data.totalComments);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unexpected error occured");
+        }
+      }
+    }
+    fetchCounts();
+  }, []);
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
   return (
     <div>
       <h1>Welcome to the dashboard</h1>
       <div className={styles.statCardGrid}>
         {" "}
         {/* statCardGrid container */}
-        <StatCard title={"Total posts"} count={12} />
-        <StatCard title={"Drafts"} count={2} />
-        <StatCard title={"Comments"} count={44} />
+        <StatCard title={"Total posts"} count={postCount} />
+        <StatCard title={"Drafts"} count={draftCount} />
+        <StatCard title={"Comments"} count={commentCount} />
       </div>
     </div>
   );
