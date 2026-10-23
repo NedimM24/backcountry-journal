@@ -32,7 +32,6 @@ postRouter.get("/non-published/count", verifyToken, isAdmin, getDraftsCount)
 postRouter.get('/:id', verifyToken, getPost)
 postRouter.get("/category/:category", verifyToken, getPublishedPostsByCategory)
 
-
 //UPDATE 
 postRouter.patch('/:id', verifyToken, isAdmin, validateUpdatePost, updatePost)
 
