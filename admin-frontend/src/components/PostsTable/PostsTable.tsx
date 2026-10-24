@@ -7,6 +7,7 @@ type BlogPost = {
   coverImage: string | null;
   category: string;
   timeStamp: string;
+  isPublished: boolean;
 };
 
 export function PostsTable() {
@@ -23,7 +24,7 @@ export function PostsTable() {
           },
         });
         if (!response.ok) {
-          throw new Error("Failed to fetch post");
+          throw new Error("Failed to fetch posts");
         }
         const data = await response.json();
         setBlogs(data);
@@ -50,14 +51,16 @@ export function PostsTable() {
           <p>Status</p>
           <p>Actions</p>
         </div>
-        <div className={styles.postRow}>
-          {/* placeholders for now, will map l8r */}
-          <p>title here</p>
-          <p>Campinfg</p>
-          <p>05/20/2026</p>
-          <p>published</p>
-          <p>edit / delete</p>
-        </div>
+        {blogs.map((blog) => (
+          <div key={blog.id} className={styles.postRow}>
+            <p>{blog.title}</p>
+            <p>{blog.category}</p>
+            <p>{blog.timeStamp}</p>
+            <p>{blog.isPublished ? "Published" : "Unpublished"}</p>
+            <a href="/">edit</a>
+            <a href="/">Delete</a>
+          </div>
+        ))}
       </div>
     </div>
   );
