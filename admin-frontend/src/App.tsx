@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import { Login } from "./pages/Login/Login";
 import { ProtectedAdminRoute } from "./routes/ProtectedAdminRoute";
 import { AdminLayout } from "./components/AdminLayout/AdminLayout";
+import { PostForm } from "./components/PostForm/PostForm";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           {/* private */}
           <Route element={<AdminLayout />}>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/new-post" element={<PostForm />} />
           </Route>
         </Route>
       </Routes>

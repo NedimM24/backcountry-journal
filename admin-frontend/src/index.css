@@ -27,9 +27,9 @@ body{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: .55rem;
   border: none;
   border-radius: 6px;
+  padding: 0.75rem 1.1rem;
 
   background-color: var(--color-primary);
   color: white;

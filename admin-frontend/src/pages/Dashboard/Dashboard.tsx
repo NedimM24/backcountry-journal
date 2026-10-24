@@ -93,7 +93,12 @@ function Dashboard() {
 
   return (
     <div>
-      <h1>Welcome to the dashboard</h1>
+      <div className={styles.bodyHeader}>
+        <h3>Admin dashboard</h3>
+        <a className="btn" href="/new-post">
+          + New Post
+        </a>
+      </div>
       <div className={styles.statCardGrid}>
         {" "}
         {/* statCardGrid container */}

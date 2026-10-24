@@ -8,3 +8,14 @@
 .postTable{
     padding: 1rem;
 }
+
+.bodyHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.bodyHeader h3{
+    margin: 0;
+}
