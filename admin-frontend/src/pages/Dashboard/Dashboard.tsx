@@ -95,7 +95,7 @@ function Dashboard() {
     <div>
       <div className={styles.bodyHeader}>
         <h3>Admin dashboard</h3>
-        <a className="btn" href="/new-post">
+        <a className="btn" href="/posts/new-post">
           + New Post
         </a>
       </div>

@@ -17,7 +17,7 @@ export function PostsTable() {
     async function fetchRecentPosts() {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:3000/api/posts`, {
+        const response = await fetch(`http://localhost:3000/api/posts/recent`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ export function PostsTable() {
             <p>{blog.title}</p>
             <p>{blog.category}</p>
             <p>{blog.timeStamp}</p>
-            <p>{blog.isPublished ? "Published" : "Unpublished"}</p>
+            <p>{blog.isPublished ? "Published" : "Draft"}</p>
             <a href="/">edit</a>
             <a href="/">Delete</a>
           </div>

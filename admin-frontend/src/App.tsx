@@ -17,7 +17,7 @@ function App() {
           {/* private */}
           <Route element={<AdminLayout />}>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/new-post" element={<PostForm />} />
+            <Route path="/posts/new-post" element={<PostForm />} />
           </Route>
         </Route>
       </Routes>
