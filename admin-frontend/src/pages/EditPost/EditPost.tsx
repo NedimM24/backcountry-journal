@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 
 export function EditPost() {
   const { id } = useParams();

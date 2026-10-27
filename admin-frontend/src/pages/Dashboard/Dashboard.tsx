@@ -107,7 +107,15 @@ function Dashboard() {
         <StatCard title={"Comments"} count={commentCount} />
       </div>
       <div className={styles.postTable}>
-        <PostsTable />
+        <PostsTable
+          onDeleted={(_postId, isPublished) => {
+            setPostCount((count) => count - 1);
+
+            if (!isPublished) {
+              setDraftCount((count) => count - 1);
+            }
+          }}
+        />
       </div>
     </div>
   );

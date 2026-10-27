@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Comments from "../../components/CommentsList/Comments";
+import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 
 type BlogPost = {
   id: number;
@@ -62,6 +63,7 @@ export function ViewPost() {
         <h3>{post.title}</h3>
         <h5>{post.category}</h5>
         <p>{post.bodyText}</p>
+        <DeleteButton />
       </main>
 
       {/* COMMENTS WILL GO HERE */}

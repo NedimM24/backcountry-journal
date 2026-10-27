@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./PostsTable.module.css";
+import { Link } from "react-router-dom";
+import { DeleteButton } from "../DeleteButton/DeleteButton";
 
 type BlogPost = {
   id: number;
@@ -10,7 +12,10 @@ type BlogPost = {
   isPublished: boolean;
 };
 
-export function PostsTable() {
+type PostsTableProps = {
+  onDeleted: (postId: number, isPublished: boolean) => void;
+};
+export function PostsTable({ onDeleted }: PostsTableProps) {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
@@ -38,6 +43,10 @@ export function PostsTable() {
     }
     fetchRecentPosts();
   }, []);
+  function handlePostDeleted(postId: number, isPublished: boolean) {
+    setBlogs((prev) => prev.filter((blog) => blog.id !== postId));
+    onDeleted(postId, isPublished);
+  }
 
   return (
     <div>
@@ -57,8 +66,11 @@ export function PostsTable() {
             <p>{blog.category}</p>
             <p>{blog.timeStamp}</p>
             <p>{blog.isPublished ? "Published" : "Draft"}</p>
-            <a href="/">edit</a>
-            <a href="/">Delete</a>
+            <Link to={`/posts/${blog.id}/edit`}>Edit</Link>
+            <DeleteButton
+              postId={blog.id}
+              onDeleted={() => handlePostDeleted(blog.id, blog.isPublished)}
+            />
           </div>
         ))}
       </div>
