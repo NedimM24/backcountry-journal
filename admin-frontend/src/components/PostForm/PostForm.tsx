@@ -9,12 +9,15 @@ export function PostForm() {
     category: "",
     isPublished: false,
   });
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const navigate = useNavigate();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
+    setValidationErrors([]);
+    setSubmitError(null);
     //OBJECT THAT HOLDS THE USERS INPUTTED DATA
     const userData = newPost;
 
@@ -32,20 +35,44 @@ export function PostForm() {
       const data = await response.json();
 
       if (!response.ok) {
-        console.error("New post failed", data);
+        if (Array.isArray(data.errors)) {
+          setValidationErrors(
+            data.errors.map((error: { msg: string }) => error.msg),
+          );
+        } else {
+          setSubmitError(data.message || "Failed to create post");
+        }
         return;
       }
 
       //IF ALL GOES WELL, SEND THE USER TO HOME PAGE
       navigate("/");
     } catch (error) {
-      console.log("Error creating post:", error);
+      setSubmitError(
+        error instanceof Error ? error.message : "An unexpected error occured",
+      );
     }
   }
 
   return (
     <div>
       <p>new posty</p>
+
+      {submitError && <p role="alert">{submitError}</p>}
+
+      {submitError && <p role="alert">{submitError}</p>}
+
+      {validationErrors.length > 0 && (
+        <div role="alert">
+          <p>Please fix the following errors:</p>
+          <ul>
+            {validationErrors.map((message, index) => (
+              <li key={`${message}-${index}`}>{message}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} action="">
         <div>
           <label htmlFor="">Image</label>
