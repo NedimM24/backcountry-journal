@@ -23,6 +23,37 @@ function Comments({ postId }: CommentsProps) {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  async function handleDelete(commentId: number) {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this comment?",
+    );
+
+    if (!confirmed) return;
+    setError(null);
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:3000/api/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      if (!response.ok) {
+        throw new Error("Failed to delete comment");
+      }
+      setComments((prev) => prev.filter((item) => item.id !== commentId));
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("An unexpected error occured");
+      }
+    }
+  }
+
   //POSTS COMMENT TO APPROPRIATE POST
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     setError(null);
@@ -123,6 +154,7 @@ function Comments({ postId }: CommentsProps) {
             <div key={comment.id}>
               <h5>{comment.commenter.userName}</h5>
               <p>{comment.text}</p>
+              <button onClick={() => handleDelete(comment.id)}>Delete</button>
             </div>
           ))
         )}

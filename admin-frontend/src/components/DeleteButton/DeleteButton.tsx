@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 type DeletedButtonProps = {
@@ -8,7 +7,6 @@ type DeletedButtonProps = {
 
 export function DeleteButton({ postId, onDeleted }: DeletedButtonProps) {
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
   async function handleDelete() {
     const confirmed = window.confirm(
       "Are you sure you want to delete this post?",
