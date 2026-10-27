@@ -9,6 +9,7 @@ import { validateCreateComment } from '../validation/validateCreateComment';
 import { validateUpdateComment } from '../validation/validateUpdateComment';
 import { isCommentOwner } from '../middleware/isCommentOwner';
 import { isAdmin } from '../middleware/isAdmin';
+import { isAdminOrCommentOwner } from '../middleware/isAdminOrCommentOwner';
 
 const commentRouter = express.Router();
 
@@ -23,6 +24,6 @@ commentRouter.get('/comments/count', verifyToken, isAdmin, getCommentCount)
 commentRouter.patch('/comments/:id', verifyToken, isCommentOwner, validateUpdateComment, updateComment)
 
 //DELETE
-commentRouter.delete('/comments/:id', verifyToken, isCommentOwner, deleteComment)
+commentRouter.delete('/comments/:id', verifyToken, isAdminOrCommentOwner, deleteComment)
 
 export default commentRouter;

@@ -11,7 +11,7 @@ export const validateUpdatePost = [
         .trim()
         .isLength({ min: 20, max: 10000 }).withMessage("Body must be between 20 and 10,000 characters."),
     body("coverImage")
-        .optional()
+        .optional({values:"null"})
         .trim()
         .isURL()
         .withMessage("Cover image must be a valid URL."),

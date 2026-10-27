@@ -11,12 +11,12 @@ export const validateCreatePost = [
         .notEmpty().withMessage("Body is required.")
         .isLength({ min: 20, max: 10000 }).withMessage("Body must be between 20 and 10,000 characters."),
     body("coverImage")
-        .optional()
+        .optional({values: "falsy"})
         .trim()
         .isURL()
         .withMessage("Cover image must be a valid URL."),
     body("category")
-        .isIn(["Hiking", "Gear", "Camping", "Backpacking", ])
+        .isIn(["hiking", "gear", "camping", "backpacking", "other" ])
         .withMessage("Invalid category."),
     body("isPublished")
         .isBoolean()
