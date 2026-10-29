@@ -8,6 +8,7 @@ import { PostForm } from "./components/PostForm/PostForm";
 import { AllPosts } from "./pages/AllPosts/AllPosts";
 import { ViewPost } from "./pages/ViewPost/ViewPost";
 import { EditPost } from "./pages/EditPost/EditPost";
+import { Drafts } from "./pages/Drafts/Drafts";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           {/* private */}
           <Route element={<AdminLayout />}>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/posts/drafts" element={<Drafts />} />
             <Route path="/posts/new-post" element={<PostForm />} />
             <Route path="/posts" element={<AllPosts />} />
             <Route path="/posts/:id" element={<ViewPost />} />

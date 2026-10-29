@@ -1,0 +1,82 @@
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { LoadingSpinner } from "../../components/LoadingSpinner/LoadingSpinner";
+
+type BlogPost = {
+  id: number;
+  title: string;
+  coverImage: string | null;
+  category: string;
+  timeStamp: string;
+};
+
+export function Drafts() {
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAllPosts() {
+      try {
+        const token = localStorage.getItem("token");
+        //RETURNS ALL PUBLISHED POSTS
+        const response = await fetch(
+          "http://localhost:3000/api/posts/non-published",
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        );
+        if (!response.ok) {
+          const errorText = await response.text();
+          console.error("Drafts request failed", response.status, errorText);
+          throw new Error(`Failed to fetch posts (${response.status})`);
+        }
+        const data: BlogPost[] = await response.json();
+        setBlogs(data);
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error.message);
+        } else {
+          setError("An unexpected error occured");
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchAllPosts();
+  }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner message="Loading posts..." />;
+  }
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  return (
+    <section>
+      <h2>Drafts</h2>
+      {blogs.map((blog) => (
+        <div key={blog.id}>
+          {blog.coverImage && <img src={blog.coverImage} alt={blog.title} />}
+
+          <h3>{blog.title}</h3>
+          <h5>{blog.category}</h5>
+
+          <p>
+            <time dateTime={blog.timeStamp}>
+              {new Date(blog.timeStamp).toLocaleDateString()}
+            </time>
+          </p>
+
+          <Link to={`/posts/${blog.id}`}>Read Blog</Link>
+          <Link to={`/posts/${blog.id}/edit`}>Edit Blog</Link>
+        </div>
+      ))}
+    </section>
+  );
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthHeader } from "../../components/AuthHeader/AuthHeader";
+import { ButtonSpinner } from "../../components/LoadingSpinner/ButtonSpinner";
 
 type LoginResponse = {
   token?: string;
@@ -12,6 +13,7 @@ export function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   //COMMUNICATES WITH MY DB WHENEVER SUBMIT IS CLICKED
@@ -20,6 +22,7 @@ export function Login() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
+    setIsLoading(true);
 
     try {
       const response = await fetch("http://localhost:3000/api/auth/login", {
@@ -59,6 +62,8 @@ export function Login() {
       navigate("/", { replace: true });
     } catch {
       setError("Unable to connect to the server. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -95,7 +100,9 @@ export function Login() {
 
         {error && <p role="alert">{error}</p>}
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? <ButtonSpinner /> : "Login"}
+        </button>
       </form>
     </div>
   );

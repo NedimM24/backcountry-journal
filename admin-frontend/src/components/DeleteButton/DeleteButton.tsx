@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ButtonSpinner } from "../LoadingSpinner/ButtonSpinner";
 
 type DeletedButtonProps = {
   postId: number;
@@ -7,13 +8,17 @@ type DeletedButtonProps = {
 
 export function DeleteButton({ postId, onDeleted }: DeletedButtonProps) {
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   async function handleDelete() {
     const confirmed = window.confirm(
       "Are you sure you want to delete this post?",
     );
 
     if (!confirmed) return;
-    console.log("wagwan");
+
+    setError(null);
+    setIsLoading(true);
+
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -41,7 +46,9 @@ export function DeleteButton({ postId, onDeleted }: DeletedButtonProps) {
   return (
     <div>
       {error && <p role="alert">{error}</p>}
-      <button onClick={handleDelete}>Delete Post</button>
+      <button onClick={handleDelete} disabled={isLoading}>
+        {isLoading ? <ButtonSpinner /> : "Delete Post"}
+      </button>
     </div>
   );
 }

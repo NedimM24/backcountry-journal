@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
 
 type BlogPost = {
   id: number;
@@ -12,21 +13,19 @@ type BlogPost = {
 export function AdminPostCard() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchAllPosts() {
       try {
         const token = localStorage.getItem("token");
         //RETURNS ALL PUBLISHED POSTS
-        const response = await fetch(
-          "http://localhost:3000/api/posts/published",
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+        const response = await fetch("http://localhost:3000/api/posts", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
           },
-        );
+        });
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
         }
@@ -38,10 +37,16 @@ export function AdminPostCard() {
         } else {
           setError("An unexpected error occured");
         }
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchAllPosts();
   }, []);
+
+  if (isLoading) {
+    return <LoadingSpinner message="Loading posts..." />;
+  }
 
   if (error) {
     return <p>{error}</p>;

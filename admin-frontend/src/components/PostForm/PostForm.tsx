@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ButtonSpinner } from "../LoadingSpinner/ButtonSpinner";
 
 export function PostForm() {
   const [newPost, setNewPost] = useState({
@@ -11,6 +12,7 @@ export function PostForm() {
   });
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -18,6 +20,8 @@ export function PostForm() {
     e.preventDefault();
     setValidationErrors([]);
     setSubmitError(null);
+    setIsLoading(true);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     //OBJECT THAT HOLDS THE USERS INPUTTED DATA
     const userData = newPost;
 
@@ -56,9 +60,7 @@ export function PostForm() {
 
   return (
     <div>
-      <p>new posty</p>
-
-      {submitError && <p role="alert">{submitError}</p>}
+      <p>new postyy</p>
 
       {submitError && <p role="alert">{submitError}</p>}
 
@@ -248,7 +250,9 @@ export function PostForm() {
           </label>
         </div>
 
-        <button className="btn">Submit</button>
+        <button className="btn" disabled={isLoading}>
+          {isLoading ? <ButtonSpinner /> : "Submit"}
+        </button>
       </form>
     </div>
   );

@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
+import { ButtonSpinner } from "../LoadingSpinner/ButtonSpinner";
 
 type Comment = {
   id: number;
@@ -20,8 +22,12 @@ type CommentsProps = {
 function Comments({ postId }: CommentsProps) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [comment, setComment] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [deletingCommentId, setDeletingCommentId] = useState<number | null>(
+    null,
+  );
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleDelete(commentId: number) {
     const confirmed = window.confirm(
@@ -30,6 +36,7 @@ function Comments({ postId }: CommentsProps) {
 
     if (!confirmed) return;
     setError(null);
+    setDeletingCommentId(commentId);
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -51,6 +58,8 @@ function Comments({ postId }: CommentsProps) {
       } else {
         setError("An unexpected error occured");
       }
+    } finally {
+      setDeletingCommentId(null);
     }
   }
 
@@ -58,6 +67,7 @@ function Comments({ postId }: CommentsProps) {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     setError(null);
     event.preventDefault();
+    setIsSubmitting(true);
 
     try {
       const token = localStorage.getItem("token");
@@ -104,6 +114,8 @@ function Comments({ postId }: CommentsProps) {
       } else {
         setError("An unexpected error occured");
       }
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -146,7 +158,7 @@ function Comments({ postId }: CommentsProps) {
       {error && <p role="alert">{error}</p>}
       <div>
         {isLoading ? (
-          <p>Loading Comments...</p>
+          <LoadingSpinner />
         ) : comments.length === 0 ? (
           <p>Be the first to comment!</p>
         ) : (
@@ -154,7 +166,16 @@ function Comments({ postId }: CommentsProps) {
             <div key={comment.id}>
               <h5>{comment.commenter.userName}</h5>
               <p>{comment.text}</p>
-              <button onClick={() => handleDelete(comment.id)}>Delete</button>
+              <button
+                onClick={() => handleDelete(comment.id)}
+                disabled={deletingCommentId !== null || isSubmitting}
+              >
+                {deletingCommentId === comment.id ? (
+                  <ButtonSpinner />
+                ) : (
+                  "Delete"
+                )}
+              </button>
             </div>
           ))
         )}
@@ -169,7 +190,12 @@ function Comments({ postId }: CommentsProps) {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
-          <button type="submit">Submit</button>
+          <button
+            disabled={isLoading || isSubmitting || deletingCommentId !== null}
+            type="submit"
+          >
+            {isSubmitting ? <ButtonSpinner /> : "Submit"}
+          </button>
         </form>
       </div>
     </div>

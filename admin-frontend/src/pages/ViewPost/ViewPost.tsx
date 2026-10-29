@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Comments from "../../components/CommentsList/Comments";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
@@ -18,6 +18,7 @@ export function ViewPost() {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPostById() {
@@ -63,7 +64,7 @@ export function ViewPost() {
         <h3>{post.title}</h3>
         <h5>{post.category}</h5>
         <p>{post.bodyText}</p>
-        <DeleteButton />
+        <DeleteButton postId={post.id} onDeleted={() => navigate("/posts")} />
       </main>
 
       {/* COMMENTS WILL GO HERE */}
