@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import styles from "./AuthForm.module.css";
 
 type AuthFormProps = {
   mode: "signup" | "login";
@@ -94,9 +95,9 @@ export function AuthForm({ mode }: AuthFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <h1>{isSignUp ? "Create an account" : "Log in"}</h1>
+    <form className={styles.authContainer} onSubmit={handleSubmit}>
+      <div className={styles.formHeader}>
+        <h1>{isSignUp ? "Create an account" : "Welcome Back"}</h1>
         <p>
           {isSignUp
             ? "Join the BackCountry Journal to become a part of our outdoor community and gain access to our blogs!"
@@ -107,60 +108,62 @@ export function AuthForm({ mode }: AuthFormProps) {
       {/* IF THE MODE IS SIGN UP */}
       {isSignUp && (
         <>
-          <label>
-            Full Name:
-            <input
-              type="text"
-              placeholder="Enter your full name"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </label>
+          <div className={styles.inputContainer}>
+            <label>
+              Full Name 👤
+              <input
+                type="text"
+                placeholder="Enter your full name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </label>
 
-          <label>
-            Username:
-            <input
-              type="text"
-              placeholder="Choose a unique username"
-              required
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </label>
+            <label>
+              Username 👤
+              <input
+                type="text"
+                placeholder="Choose a unique username"
+                required
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+            </label>
 
-          <label>
-            Email:
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
+            <label>
+              Email 📧
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
 
-          <label>
-            Password:
-            <input
-              type="password"
-              placeholder="Choose a password(Min 8 characters)"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
+            <label>
+              Password 🔒
+              <input
+                type="password"
+                placeholder="Choose a password(Min 8 characters)"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
 
-          <label>
-            Confirm Password:
-            <input
-              type="password"
-              placeholder="Confirm your password"
-              required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </label>
+            <label>
+              Confirm Password 🔒
+              <input
+                type="password"
+                placeholder="Confirm your password"
+                required
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </label>
+          </div>
 
           <p>
             Already have an account? <Link to="/login">Login</Link>
@@ -171,27 +174,29 @@ export function AuthForm({ mode }: AuthFormProps) {
       {/* IF THE MODE IS LOGIN */}
       {!isSignUp && (
         <>
-          <label>
-            Email:
-            <input
-              type="email"
-              placeholder="Enter your email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
+          <div className={styles.inputContainer}>
+            <label>
+              Email 📧
+              <input
+                type="email"
+                placeholder="Enter your email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
 
-          <label>
-            Password:
-            <input
-              type="password"
-              placeholder="Enter your password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
+            <label>
+              Password 🔒
+              <input
+                type="password"
+                placeholder="Enter your password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+          </div>
 
           <p>
             Don't have an account? <Link to="/signup">Sign Up</Link>
@@ -199,7 +204,9 @@ export function AuthForm({ mode }: AuthFormProps) {
         </>
       )}
 
-      <button type="submit">{isSignUp ? "Sign Up" : "Login"}</button>
+      <button className="btn" type="submit">
+        {isSignUp ? "Sign Up ⇒" : "Login ⇒"}
+      </button>
     </form>
   );
 }

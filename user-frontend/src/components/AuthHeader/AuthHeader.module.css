@@ -20,4 +20,6 @@
 .header h1,
 .header h4{
     margin: 0;
+    margin-left: 1rem;
 }
+

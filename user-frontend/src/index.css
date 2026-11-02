@@ -40,6 +40,35 @@ p{
   font-family: "Bebas Neue", sans-serif;
 }
 
+/*SHAED BUTTON STYLE*/
+.btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem 1.1rem;
+
+  background-color: var(--color-primary);
+  color: white;
+
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background-color 0.3s ease, transform 0.5s ease;
+}
+
+.btn:hover{
+  background-color: var(--color-primary-hover);
+  transform: scale(1.03);
+}
+
+.btn:active{
+  background-color: var(--color-primary-hover);
+  transform: scale(1.01);
+}
+
 
 body {
   margin: 0;
