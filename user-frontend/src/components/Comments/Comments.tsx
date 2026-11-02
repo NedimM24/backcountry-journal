@@ -24,6 +24,7 @@ function Comments({ postId }: CommentsProps) {
 
   //POSTS COMMENT TO APPROPRIATE POST
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    setError(null);
     event.preventDefault();
 
     try {

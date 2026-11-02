@@ -29,11 +29,13 @@ function Home() {
           className={styles.header}
           style={{ backgroundImage: `url(${cartoonMountainImageSmall})` }}
         >
-          <h2>It's time to get outdoors.</h2>
-          <h6>
-            Field stories on hiking, camping, backpacking, gear, & everything in
-            between.
-          </h6>
+          <div className="photo-font">
+            <h2>It's time to get outdoors.</h2>
+            <h6>
+              Field stories on hiking, camping, backpacking, gear, & everything
+              in between.
+            </h6>
+          </div>
         </header>
 
         {/* MAIN CONTENT WITH ALL THE BLOG POSTS */}
