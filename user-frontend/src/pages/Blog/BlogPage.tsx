@@ -1,9 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../../components/Navbar/Navbar";
 import Comments from "../../components/Comments/Comments";
-import styles from "../Home/Home.module.css";
+// import styles from "../Home/Home.module.css";
+import styles from "../Blog/BlogPage.module.css";
 import logo from "../../assets/backcountry-logo-green.svg";
 import { useEffect, useState } from "react";
+import mountainImage from "../../assets/m5.jpg";
 
 type BlogPost = {
   id: number;
@@ -36,6 +38,8 @@ function BlogPage() {
           throw new Error("Failed to fetch post");
         }
         const data = await response.json();
+        console.log("coverImage:", data.coverImage);
+        console.log("type:", typeof data.coverImage);
         setPost(data);
       } catch (error) {
         if (error instanceof Error) {
@@ -70,16 +74,39 @@ function BlogPage() {
         <Navbar />
       </div>
 
-      <p>You are now viewing Post Id: {id}</p>
-      <main>
-        {post.coverImage && <img src={post.coverImage} alt={post.title} />}
-        <h3>{post.title}</h3>
-        <h5>{post.category}</h5>
-        <p>{post.bodyText}</p>
-      </main>
+      <div className={styles.container}>
+        <main>
+          <div className={styles.top}>
+            <h5 className={styles.category}>{post.category}</h5>
+            <h3 className={styles.title}>{post.title}</h3>
+            <p>
+              <time className={styles.date} dateTime={post.timeStamp}>
+                {new Date(post.timeStamp).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </time>
+            </p>
+          </div>
 
-      {/* COMMENTS WILL GO HERE */}
-      <Comments postId={post.id} />
+          <img className={styles.image} src={mountainImage} alt={post.title} />
+          <p className={styles.bodyText}>{post.bodyText}</p>
+        </main>
+
+        <div>
+          <p className={styles.quote}>
+            "When you visit a friend, you take care to leave your friend's home
+            just as you found it. When you visit the backcountry, the same
+            courtesies apply."
+          </p>
+        </div>
+
+        {/* COMMENTS WILL GO HERE */}
+        <div className={styles.commentContainer}>
+          <Comments postId={post.id} />
+        </div>
+      </div>
     </div>
   );
 }

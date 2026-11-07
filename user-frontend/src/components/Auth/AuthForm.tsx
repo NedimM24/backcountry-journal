@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./AuthForm.module.css";
+import { ButtonSpinner } from "../../components/LoadingSpinner/ButtonSpinner";
 
 type AuthFormProps = {
   mode: "signup" | "login";
@@ -12,6 +13,7 @@ export function AuthForm({ mode }: AuthFormProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   //NEED THIS CONDITIONAL TO CHOOSE WHAT FORM TO DISPLAY
@@ -30,6 +32,8 @@ export function AuthForm({ mode }: AuthFormProps) {
         console.log("Passwords do not match");
         return;
       }
+      setIsLoading(true);
+      console.log("Loading:", true);
 
       //OBJECT THAT HOLDS THE USERS INPUTTED DATA
       const userData = {
@@ -60,10 +64,13 @@ export function AuthForm({ mode }: AuthFormProps) {
         navigate("/login");
       } catch (error) {
         console.log("Error creating user:", error);
+      } finally {
+        setIsLoading(false);
       }
 
       //LOGIN HANDLER
     } else {
+      setIsLoading(true);
       try {
         const response = await fetch("http://localhost:3000/api/auth/login", {
           method: "POST",
@@ -90,6 +97,8 @@ export function AuthForm({ mode }: AuthFormProps) {
         navigate("/");
       } catch (error) {
         console.log("Error logging in:", error);
+      } finally {
+        setIsLoading(false);
       }
     }
   }
@@ -204,8 +213,8 @@ export function AuthForm({ mode }: AuthFormProps) {
         </>
       )}
 
-      <button className="btn" type="submit">
-        {isSignUp ? "Sign Up ⇒" : "Login ⇒"}
+      <button className="btn" type="submit" disabled={isLoading}>
+        {isLoading ? <ButtonSpinner /> : isSignUp ? "Sign Up ⇒" : "Login ⇒"}
       </button>
     </form>
   );

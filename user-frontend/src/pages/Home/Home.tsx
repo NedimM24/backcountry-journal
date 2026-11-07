@@ -39,7 +39,7 @@ function Home() {
         </header>
 
         {/* MAIN CONTENT WITH ALL THE BLOG POSTS */}
-        <main>
+        <main className={styles.main}>
           {/* FEATURED POST SAME ACCROSS ALL CATEGORIES */}
           <FeaturedCard />
           <BlogGrid />

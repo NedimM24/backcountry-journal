@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styles from "./comments.module.css";
 
 type Comment = {
   id: number;
@@ -112,18 +113,18 @@ function Comments({ postId }: CommentsProps) {
   return (
     <div>
       {/* All comments tied to post go here */}
-      <h4>Comments</h4>
+      <p className={styles.title}>Comments</p>
       <div>
         {comments.map((comment) => (
-          <div key={comment.id}>
-            <h5>{comment.commenter.userName}</h5>
+          <div className={styles.comment} key={comment.id}>
+            <h5 className={styles.userName}>{comment.commenter.userName}</h5>
             <p>{comment.text}</p>
           </div>
         ))}
       </div>
 
       {/* Comment input form */}
-      <div>
+      <div className={styles.commentForm}>
         <form onSubmit={handleSubmit}>
           <textarea
             placeholder="Write a comment"
@@ -131,7 +132,9 @@ function Comments({ postId }: CommentsProps) {
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
-          <button type="submit">Submit</button>
+          <button className="btn" type="submit">
+            Post comment
+          </button>
         </form>
       </div>
     </div>

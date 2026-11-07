@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import mountainImage from "../../assets/m5.jpg";
+import styles from "./BlogCard.module.css";
 
 type BlogPost = {
   id: number;
@@ -6,6 +8,7 @@ type BlogPost = {
   coverImage: string | null;
   category: string;
   timeStamp: string;
+  bodyText: string;
 };
 
 type BlogCardProps = {
@@ -13,15 +16,34 @@ type BlogCardProps = {
 };
 
 export function BlogCard({ post }: BlogCardProps) {
+  const imageSrc =
+    post.coverImage && post.coverImage !== "null"
+      ? post.coverImage
+      : mountainImage;
+  console.log("Value:", post.coverImage);
+  console.log("Type:", typeof post.coverImage);
+  console.log("Strict null check:", post.coverImage === null);
+  console.log("Fallback:", post.coverImage ?? mountainImage);
   return (
-    <div>
-      <img>{post.coverImage}</img>
-      <h3>{post.title}</h3>
-      <h5>{post.category}</h5>
-      <p>
-        <time>{post.timeStamp}</time>
-      </p>
-      <Link to={`/posts/${post.id}`}>Read Blog</Link>
+    <div className={styles.container}>
+      <img className={styles.image} src={imageSrc} alt={post.title} />
+      <div className={styles.bottom}>
+        <h5 className={styles.category}>{post.category}</h5>
+        <h3>{post.title}</h3>
+        <p className={styles.bodyText}>{post.bodyText}</p>
+        <p>
+          <time className={styles.date} dateTime={post.timeStamp}>
+            {new Date(post.timeStamp).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </time>
+        </p>
+        <Link className={styles.readBtn} to={`/posts/${post.id}`}>
+          Read the story ➔
+        </Link>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { BlogCard } from "./BlogCard";
+import styles from "./BlogGrid.module.css";
 
 type BlogPost = {
   id: number;
@@ -7,6 +8,7 @@ type BlogPost = {
   coverImage: string | null;
   category: string;
   timeStamp: string;
+  bodyText: string;
 };
 
 type BlogPostProps = {
@@ -54,11 +56,13 @@ export function BlogGrid({ category }: BlogPostProps) {
   }
 
   return (
-    <section>
-      <h2>All Blogs</h2>
-      {blogs.map((blog) => (
-        <BlogCard key={blog.id} post={blog} />
-      ))}
-    </section>
+    <div>
+      <h2 className={styles.title}>All Blogs</h2>
+      <section className={styles.grid}>
+        {blogs.map((blog) => (
+          <BlogCard key={blog.id} post={blog} />
+        ))}
+      </section>
+    </div>
   );
 }

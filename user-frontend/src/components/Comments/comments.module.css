@@ -1,0 +1,37 @@
+.title{
+    font-size: larger;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: .2rem;
+    color: var( --color-primary);
+}
+
+.comment{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.userName {
+    margin: 0;
+    margin-top: .4rem;
+}
+
+.commentForm {
+    margin-top: 1rem;
+}
+
+.commentForm form{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.commentForm textarea{
+    width: 100%;
+    border-radius: 5px;
+    min-height: 70px;
+    padding: .6rem;
+    border: solid 1px lightgray
+}
+
+.commentForm button{
+    align-self: flex-start;
+}
