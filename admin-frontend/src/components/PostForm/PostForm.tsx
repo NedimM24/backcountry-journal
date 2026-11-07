@@ -23,7 +23,10 @@ export function PostForm() {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     //OBJECT THAT HOLDS THE USERS INPUTTED DATA
-    const userData = newPost;
+    const userData = {
+      ...newPost,
+      coverImage: newPost.coverImage.trim() || null,
+    };
 
     try {
       const token = localStorage.getItem("token");

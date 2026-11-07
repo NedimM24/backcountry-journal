@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthHeader } from "../../components/AuthHeader/AuthHeader";
 import { ButtonSpinner } from "../../components/LoadingSpinner/ButtonSpinner";
+import styles from "./Login.module.css";
 
 type LoginResponse = {
   token?: string;
@@ -68,42 +69,46 @@ export function Login() {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <AuthHeader />
-      <form onSubmit={handleSubmit}>
-        <div>
-          <h1>Admin Login</h1>
-          <p>Log in to manage Backcountry Journal</p>
-        </div>
+      <div className={styles.authForm}>
+        <form className={styles.authContainer} onSubmit={handleSubmit}>
+          <div className={styles.formHeader}>
+            <h1>Welcome back!</h1>
+            <p>Log in to manage Backcountry Journal</p>
+          </div>
 
-        <label>
-          Email:
-          <input
-            type="email"
-            placeholder="Enter your email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </label>
+          <div className={styles.inputContainer}>
+            <label>
+              Email:
+              <input
+                type="email"
+                placeholder="Enter your email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </label>
 
-        <label>
-          Password:
-          <input
-            type="password"
-            placeholder="Enter your password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
+            <label>
+              Password:
+              <input
+                type="password"
+                placeholder="Enter your password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </label>
+          </div>
 
-        {error && <p role="alert">{error}</p>}
+          {error && <p role="alert">{error}</p>}
 
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? <ButtonSpinner /> : "Login"}
-        </button>
-      </form>
+          <button className="btn" type="submit" disabled={isLoading}>
+            {isLoading ? <ButtonSpinner /> : "Login"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,98 @@
+.container{
+    display: flex;
+    flex-direction: column;
+}
+
+.authForm{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    align-self: center;
+    width: 90%;
+}
+.authContainer{
+    display: flex;
+    flex-direction: column;
+    border: solid 1px lightgray;
+    background-color: white;
+    border-radius: 3px;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formHeader h1{
+    margin-bottom: 0.25rem;
+}
+
+.formHeader p{
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
+.formHeader{
+    border-bottom: 1px solid lightgray;
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: .9rem;
+    margin-bottom: .5rem;
+    gap: 1rem;
+}
+
+.inputContainer label{
+    display: flex;
+    flex-direction: column;
+    font-weight: bolder;
+}
+
+.inputContainer input{
+ padding: .5rem;
+ border: solid 1px lightgray;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+ border-radius: 3px;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.authContainer button{
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .authForm{
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .authForm{
+        margin-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        max-width: 600px;
+    }
+}
