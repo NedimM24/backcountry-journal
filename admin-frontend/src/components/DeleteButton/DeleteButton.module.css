@@ -1,0 +1,15 @@
+.delete{
+    border: none;
+    background: none;
+    color: rgb(197, 62, 62);
+    font: inherit;
+    cursor: pointer;
+}
+
+.delete:hover{
+    transform: scale(1.05);
+}
+
+.delete:active{
+    transform: scale(1.02);
+}

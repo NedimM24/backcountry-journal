@@ -14,7 +14,7 @@ export function AdminLayout() {
         <DesktopNav />
       </div>
 
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
     </div>

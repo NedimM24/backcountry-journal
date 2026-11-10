@@ -1,6 +1,7 @@
 .statCard{
-    width: 30vw;
+    width: 100%;
     height: auto;
+    box-sizing: border-box;
     border: solid 1px lightgray;
     background-color: white;
     border-radius: 3px;
@@ -9,3 +10,4 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+

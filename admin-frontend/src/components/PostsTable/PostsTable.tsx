@@ -62,15 +62,27 @@ export function PostsTable({ onDeleted }: PostsTableProps) {
         </div>
         {blogs.map((blog) => (
           <div key={blog.id} className={styles.postRow}>
-            <p>{blog.title}</p>
+            <b>{blog.title}</b>
             <p>{blog.category}</p>
-            <p>{blog.timeStamp}</p>
+            <p>
+              <time className={styles.date} dateTime={blog.timeStamp}>
+                {new Date(blog.timeStamp).toLocaleDateString("en-US", {
+                  month: "numeric",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </time>
+            </p>
             <p>{blog.isPublished ? "Published" : "Draft"}</p>
-            <Link to={`/posts/${blog.id}/edit`}>Edit</Link>
-            <DeleteButton
-              postId={blog.id}
-              onDeleted={() => handlePostDeleted(blog.id, blog.isPublished)}
-            />
+            <div className={styles.actions}>
+              <Link className={styles.edit} to={`/posts/${blog.id}/edit`}>
+                Edit
+              </Link>
+              <DeleteButton
+                postId={blog.id}
+                onDeleted={() => handlePostDeleted(blog.id, blog.isPublished)}
+              />
+            </div>
           </div>
         ))}
       </div>

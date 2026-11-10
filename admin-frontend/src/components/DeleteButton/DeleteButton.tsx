@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ButtonSpinner } from "../LoadingSpinner/ButtonSpinner";
+import styles from "./DeleteButton.module.css";
 
 type DeletedButtonProps = {
   postId: number;
@@ -46,8 +47,12 @@ export function DeleteButton({ postId, onDeleted }: DeletedButtonProps) {
   return (
     <div>
       {error && <p role="alert">{error}</p>}
-      <button onClick={handleDelete} disabled={isLoading}>
-        {isLoading ? <ButtonSpinner /> : "Delete Post"}
+      <button
+        className={styles.delete}
+        onClick={handleDelete}
+        disabled={isLoading}
+      >
+        {isLoading ? <ButtonSpinner /> : "Delete"}
       </button>
     </div>
   );

@@ -7,10 +7,10 @@ export function AuthHeader() {
       className={styles.header}
       style={{ backgroundImage: `url(${mountainImage})` }}
     >
-      <h1>Backcountry Journal</h1>
-      <h4>Get outside, explore</h4>
-      <br />
-      <h4>Go</h4>
+      <div className="photo-font">
+        <h1>Backcountry Journal</h1>
+        <h4>Get outside, explore</h4>
+      </div>
     </header>
   );
 }

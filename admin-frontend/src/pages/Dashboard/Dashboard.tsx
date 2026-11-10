@@ -113,7 +113,7 @@ function Dashboard() {
     return <p role="alert">{error}</p>;
   }
   return (
-    <div>
+    <div className={styles.dashboard}>
       <div className={styles.bodyHeader}>
         <h3>Admin dashboard</h3>
         <a className="btn" href="/posts/new-post">

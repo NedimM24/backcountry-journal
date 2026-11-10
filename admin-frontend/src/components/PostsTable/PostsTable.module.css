@@ -12,6 +12,32 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-items: center;
+     padding: .4rem;
 }
+
+.headerCategories{
+    background-color: rgb(247, 236, 216);
+}
+
 .postRow{
+    border-top: solid 1px lightgray;
+   
+}
+
+.actions{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.edit{
+    text-decoration: none;
+}
+
+.edit:hover{
+    transform: scale(1.05);
+}
+
+.edit:active{
+    transform: scale(1.02);
 }

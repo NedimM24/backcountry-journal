@@ -30,6 +30,29 @@ body{
 * {
   box-sizing: border-box;
 }
+/*GOOGLE FONTS*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-family:"Roboto Slab", serif;
+}
+
+p{
+  font-family: "Source Sans 3", sans-serif;
+}
+
+.photo-font h1,
+.photo-font h2,
+.photo-font h3,
+.photo-font h4,
+.photo-font h5,
+.photo-font h6{
+  font-family: "Bebas Neue", sans-serif;
+}
+
 
 /*SHAED BUTTON STYLE*/
 .btn{

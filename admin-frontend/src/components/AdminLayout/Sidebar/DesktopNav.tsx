@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./DesktopNav.module.css";
+import logo from "../../../assets/backcountry-logo-light.svg";
 
 export function DesktopNav() {
   const navigate = useNavigate();
@@ -10,6 +11,9 @@ export function DesktopNav() {
   }
   return (
     <aside className={styles.container}>
+      <div className={styles.logo}>
+        <img src={logo} alt="Backcountry Journal" />
+      </div>
       <nav className={styles.links}>
         <NavLink
           to="/"

@@ -1,6 +1,6 @@
 .statCardGrid{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     padding: 1rem;
     gap: 1rem;
 }
@@ -18,4 +18,10 @@
 
 .bodyHeader h3{
     margin: 0;
+}
+
+.dashboard{
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 }
