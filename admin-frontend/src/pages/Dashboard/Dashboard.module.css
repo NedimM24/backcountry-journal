@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
+    margin-bottom: 1rem;
 }
 
 .bodyHeader h3{
@@ -29,10 +29,12 @@
 @media (min-width: 768px){
     .postTable{
     padding: 1rem;
+    margin-top: 0;
     }
 
     .bodyHeader{
         padding: 1rem;
+        margin-bottom: 0;
     }
 
     .statCardGrid{
