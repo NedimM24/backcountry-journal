@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { LoadingSpinner } from "../LoadingSpinner/LoadingSpinner";
 import styles from "./AdminPostCard.module.css";
 import mountainImage from "../../assets/m5.jpg";
+import { DeleteButton } from "../DeleteButton/DeleteButton";
 
 type BlogPost = {
   id: number;
@@ -17,6 +18,10 @@ export function AdminPostCard() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  function handlePostDeleted(postId: number) {
+    setBlogs((prev) => prev.filter((blog) => blog.id !== postId));
+  }
 
   useEffect(() => {
     async function fetchAllPosts() {
@@ -101,6 +106,10 @@ export function AdminPostCard() {
                   </Link>
 
                   {/* Delete button here */}
+                  <DeleteButton
+                    postId={blog.id}
+                    onDeleted={() => handlePostDeleted(blog.id)}
+                  />
                 </div>
               </div>
             </div>

@@ -1,19 +1,19 @@
 .statCardGrid{
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    padding: 1rem;
     gap: 1rem;
+    
 }
 
 .postTable{
-    padding: 1rem;
+    margin-top: 1rem;
 }
 
 .bodyHeader{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
+    
 }
 
 .bodyHeader h3{
@@ -24,4 +24,18 @@
     width: 100%;
     min-width: 0;
     box-sizing: border-box;
+}
+
+@media (min-width: 768px){
+    .postTable{
+    padding: 1rem;
+    }
+
+    .bodyHeader{
+        padding: 1rem;
+    }
+
+    .statCardGrid{
+        padding: 1rem;
+    }
 }

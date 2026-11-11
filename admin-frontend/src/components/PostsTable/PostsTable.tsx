@@ -18,6 +18,11 @@ type PostsTableProps = {
 export function PostsTable({ onDeleted }: PostsTableProps) {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  function handlePostDeleted(postId: number, isPublished: boolean) {
+    setBlogs((prev) => prev.filter((blog) => blog.id !== postId));
+    onDeleted(postId, isPublished);
+  }
   useEffect(() => {
     async function fetchRecentPosts() {
       try {
@@ -43,14 +48,11 @@ export function PostsTable({ onDeleted }: PostsTableProps) {
     }
     fetchRecentPosts();
   }, []);
-  function handlePostDeleted(postId: number, isPublished: boolean) {
-    setBlogs((prev) => prev.filter((blog) => blog.id !== postId));
-    onDeleted(postId, isPublished);
-  }
 
   return (
     <div>
-      <b>recent posts</b>
+      {error && <p role="alert">{error}</p>}
+      <b>Recent posts</b>
       <div className={styles.container}>
         <div className={styles.headerCategories}>
           {/* Header title */}

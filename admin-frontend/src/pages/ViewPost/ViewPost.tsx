@@ -2,6 +2,8 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Comments from "../../components/CommentsList/Comments";
 import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
+import styles from "./ViewPost.module.css";
+import mountainImage from "../../assets/m5.jpg";
 
 type BlogPost = {
   id: number;
@@ -57,18 +59,39 @@ export function ViewPost() {
 
   return (
     <div>
-      <p>You are now viewing Post Id: {id}</p>
-      <main>
-        <Link to={`/posts/${post.id}/edit`}>Edit Blog</Link>
-        {post.coverImage && <img src={post.coverImage} alt={post.title} />}
-        <h3>{post.title}</h3>
-        <h5>{post.category}</h5>
-        <p>{post.bodyText}</p>
-        <DeleteButton postId={post.id} onDeleted={() => navigate("/posts")} />
-      </main>
+      <div className={styles.container}>
+        <main>
+          <div className={styles.top}>
+            <h5 className={styles.category}>{post.category}</h5>
+            <h3 className={styles.title}>{post.title}</h3>
+            <p>
+              <time className={styles.date} dateTime={post.timeStamp}>
+                {new Date(post.timeStamp).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </time>
+            </p>
+          </div>
 
-      {/* COMMENTS WILL GO HERE */}
-      <Comments postId={post.id} />
+          <img className={styles.image} src={mountainImage} alt={post.title} />
+          <p className={styles.bodyText}>{post.bodyText}</p>
+        </main>
+
+        <div>
+          <p className={styles.quote}>
+            "When you visit a friend, you take care to leave your friend's home
+            just as you found it. When you visit the backcountry, the same
+            courtesies apply."
+          </p>
+        </div>
+
+        {/* COMMENTS WILL GO HERE */}
+        <div className={styles.commentContainer}>
+          <Comments postId={post.id} />
+        </div>
+      </div>
     </div>
   );
 }

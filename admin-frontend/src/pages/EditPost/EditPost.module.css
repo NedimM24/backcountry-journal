@@ -1,0 +1,97 @@
+.formContainer{
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.formHeader{
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: solid 1px lightgray;
+}
+
+.formHeader h2{
+    margin: 0;
+}
+
+.formHeader p{
+    margin: .4rem 0 0;
+    color: rgb(117, 114, 114);
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+label{
+    font-weight: 500;
+}
+
+input[type="text"],
+textarea{
+    width: 100%;
+    box-sizing: border-box;
+    padding: .4rem;
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    font: inherit;
+}
+
+input[type="text"]:focus,
+textarea:focus{
+    outline: none;
+    border-color: var(--color--primary);
+}
+
+textarea{
+    min-height: 300px;
+    resize: vertical;
+}
+
+.imageTitle{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .5rem;
+    font-size: large;
+}
+
+.category,
+.published{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .8rem 1.5rem;
+    align-items: center;
+}
+
+.category p,
+.published p{
+    width: 100%;
+    margin: 0;
+    font-size: large;
+}
+
+.category label,
+.published label{
+    font-weight: normal;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+button{
+    align-self: self-start;
+}
+
+@media (min-width: 768px) {
+    .imageTitle{
+        grid-template-columns: .5fr 3fr;
+    }
+}

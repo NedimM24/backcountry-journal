@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ButtonSpinner } from "../LoadingSpinner/ButtonSpinner";
+import styles from "./PostForm.module.css";
 
 export function PostForm() {
   const [newPost, setNewPost] = useState({
@@ -62,9 +63,14 @@ export function PostForm() {
   }
 
   return (
-    <div>
-      <p>new postyy</p>
-
+    <div className={styles.formContainer}>
+      <div className={styles.formHeader}>
+        <h2>Create New Post</h2>
+        <p>
+          Write a new Backcountry Journal article. You choose to either publish
+          your article, or keep it as a draft.
+        </p>
+      </div>
       {submitError && <p role="alert">{submitError}</p>}
 
       {validationErrors.length > 0 && (
@@ -80,39 +86,39 @@ export function PostForm() {
 
       <form onSubmit={handleSubmit} action="">
         <div>
-          <label htmlFor="">Image</label>
-          <input
-            type="text"
-            name="coverImage"
-            id="coverImage"
-            value={newPost.coverImage}
-            onChange={(e) =>
-              setNewPost((prev) => ({
-                ...prev,
-                coverImage: e.target.value,
-              }))
-            }
-          />
+          <div className={styles.imageTitle}>
+            <label htmlFor="">Image URL</label>
+            <input
+              type="text"
+              name="coverImage"
+              id="coverImage"
+              value={newPost.coverImage}
+              onChange={(e) =>
+                setNewPost((prev) => ({
+                  ...prev,
+                  coverImage: e.target.value,
+                }))
+              }
+            />
+
+            <label htmlFor="">Title</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              required
+              value={newPost.title}
+              onChange={(e) =>
+                setNewPost((prev) => ({
+                  ...prev,
+                  title: e.target.value,
+                }))
+              }
+            />
+          </div>
         </div>
 
-        <div>
-          <label htmlFor="">Title</label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            required
-            value={newPost.title}
-            onChange={(e) =>
-              setNewPost((prev) => ({
-                ...prev,
-                title: e.target.value,
-              }))
-            }
-          />
-        </div>
-
-        <div>
+        <div className={styles.category}>
           <p>Category</p>
           <label>
             <input
@@ -200,7 +206,7 @@ export function PostForm() {
           </label>
         </div>
 
-        <div>
+        <div className={styles.body}>
           <label htmlFor="">Body</label>
           <textarea
             name="bodyText"
@@ -216,7 +222,7 @@ export function PostForm() {
           ></textarea>
         </div>
 
-        <div>
+        <div className={styles.published}>
           <p>Publishing status</p>
           <label>
             <input

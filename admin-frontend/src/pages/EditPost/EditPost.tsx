@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import styles from "./EditPost.module.css";
 
 export function EditPost() {
   const { id } = useParams();
@@ -91,8 +92,14 @@ export function EditPost() {
   }
 
   return (
-    <div>
-      <p>edit posty</p>
+    <div className={styles.formContainer}>
+      <div className={styles.formHeader}>
+        <h2>Edit Post</h2>
+        <p>
+          Edit Backcountry Journal article. You choose to either publish your
+          changes, or keep them as a draft.
+        </p>
+      </div>
 
       {submitError && <p role="alert">{submitError}</p>}
 
@@ -108,7 +115,7 @@ export function EditPost() {
       )}
 
       <form onSubmit={handleSubmit} action="">
-        <div>
+        <div className={styles.imageTitle}>
           <label htmlFor="">Image</label>
           <input
             type="text"
@@ -122,9 +129,7 @@ export function EditPost() {
               }))
             }
           />
-        </div>
 
-        <div>
           <label htmlFor="">Title</label>
           <input
             type="text"
@@ -141,7 +146,7 @@ export function EditPost() {
           />
         </div>
 
-        <div>
+        <div className={styles.category}>
           <p>Category</p>
           <label>
             <input
@@ -229,8 +234,8 @@ export function EditPost() {
           </label>
         </div>
 
-        <div>
-          <label htmlFor="">Body</label>
+        <div className={styles.body}>
+          <label htmlFor="bodyText">Body</label>
           <textarea
             name="bodyText"
             id="bodyText"
@@ -245,7 +250,7 @@ export function EditPost() {
           ></textarea>
         </div>
 
-        <div>
+        <div className={styles.published}>
           <p>Publishing status</p>
           <label>
             <input
@@ -282,7 +287,7 @@ export function EditPost() {
           </label>
         </div>
 
-        <button className="btn">Submit</button>
+        <button className="btn">Save Changes</button>
       </form>
     </div>
   );

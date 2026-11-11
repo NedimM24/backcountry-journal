@@ -10,9 +10,22 @@
 .headerCategories,
 .postRow{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr;
     align-items: center;
-     padding: .4rem;
+     padding: .9rem;
+   
+     min-width: 0;
+}
+
+.postRow > * {
+    min-width: 0;
+}
+
+.postRow b,
+.postRow p{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .headerCategories{
@@ -21,7 +34,6 @@
 
 .postRow{
     border-top: solid 1px lightgray;
-   
 }
 
 .actions{

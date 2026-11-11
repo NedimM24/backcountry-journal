@@ -1,0 +1,87 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: solid 1px lightgray;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.bottom{
+    padding: .5rem;
+}
+
+.actions{
+    display: flex;
+    justify-content: space-between;
+    border-top: solid 1px lightgray;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+    font-size: larger;
+    font-weight: bolder;
+}
+
+.category{
+    background-color: rgb(92, 110, 92);
+    color: white;
+    padding: .2rem;
+    width: 5.9rem;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.readBtn:hover{
+  
+  transform: scale(1.03);
+}
+
+.readBtn:active{
+  background-color: var(--color-primary-hover);
+  transform: scale(1.01);
+}
+
+.editBtn:hover{
+
+  transform: scale(1.03);
+}
+
+.editBtn:active{
+  background-color: var(--color-primary-hover);
+  transform: scale(1.01);
+}
+
+.editBtn,
+.readBtn{
+    text-decoration: none;
+}
+
+.readBtn{
+    color: rgb(75, 107, 75);
+}
+
+.date{
+    color: rgb(110, 110, 110);
+}
+
+.bodyText{
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}
+
+.image{
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    .blogGrid{
+        gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    } 
+}
+

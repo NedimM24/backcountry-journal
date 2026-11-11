@@ -1,6 +1,5 @@
 .layout{
     height: 100vh;
-    overflow: hidden;
 }
 
 .mobileNav{
@@ -14,8 +13,8 @@
 .main{
     min-width: 0;
     min-height: 0;
-    overflow-y: auto;
     padding: 1rem;
+    box-shadow: 0 -4px 6px -5px rgba(0, 0, 0, 0.25);
 }
 
 /*SWITCH TO FULL SIDEBAR ONCE WE EXIT MOBILE MODE*/
@@ -23,6 +22,7 @@
     .layout{
         display: flex;
         align-items: stretch;
+        overflow: hidden;
     }
 
     .mobileNav{
@@ -37,5 +37,8 @@
     .main{
         flex: 1;
         padding: 2rem;
+        overflow-y: auto;
+        padding: 1rem;
+        box-shadow: -4px 0 8px -4px rgba(0, 0, 0, 0.3);
     }
 }
