@@ -6,7 +6,7 @@ import { DateTimeFieldRefInput } from "../generated/prisma/internal/prismaNamesp
 export async function createPostQuery(
     title: string, 
     bodyText: string,
-    coverImage: string,
+    coverImage: string | null,
     category: string,
     isPublished: boolean,
     authorId: number
@@ -93,7 +93,7 @@ export async function updatePostQuery(
     postId: number,
     title: string, 
     bodyText: string,
-    coverImage: string,
+    coverImage: string | null,
     category: string,
     isPublished: boolean,
     ){

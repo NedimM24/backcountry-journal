@@ -16,7 +16,14 @@ export async function createUserQuery(name: string, userName: string, email: str
 //READ
 export async function getUserQuery(id: number){
     const user = await prisma.user.findUnique({
-        where: {id}
+        where: {id},
+        select: {
+            id: true,
+            name: true,
+            userName: true,
+            email: true,
+            role: true
+        }
     })
     return user;
 }
