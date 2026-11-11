@@ -26,8 +26,15 @@ export async function createPostQuery(
 
 //READ
 export async function getAllPosts(){
-    const posts = await prisma.post.findMany();
-    return posts;
+    return prisma.post.findMany({
+        where: {
+            isPublished: true
+        }
+    })
+}
+
+export async function getAllPostsAdmin(){
+    return prisma.post.findMany();
 }
 
 export async function getAllPublishedPosts(){
@@ -61,9 +68,20 @@ export async function getPostById(id: number){
     return post;
 }
 
+export async function getPublishedPostById(id: number){
+    const post = await prisma.post.findFirst({
+        where: {id,
+                isPublished: true,
+            }
+    });
+    return post;
+}
+
 export async function getFeaturedPostById(id: number){
     const featuredPost = await prisma.post.findUnique({
-        where: {id}
+        where: {id,
+                isPublished: true,
+        }
     });
     return featuredPost;
 }

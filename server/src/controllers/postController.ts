@@ -10,9 +10,10 @@ import { getAllPosts,
          getPublishedPostByCategoryQuery,
          getPostCountQuery,
          getDraftsCountQuery,
-         getRecentPostsQuery
+         getRecentPostsQuery,
+         getAllPostsAdmin,
+         getPublishedPostById
          } from '../queries/postQueries';
-import { log } from 'console';
 
 
 //CREATE
@@ -40,6 +41,11 @@ export async function getPosts(req: Request, res: Response){
     res.json(posts);
 }
 
+export async function getPostsAdmin(req: Request, res: Response){
+    const posts = await getAllPostsAdmin();
+    res.json(posts);
+}
+
 //Function that will return an array of all PUBLISHED posts
 export async function getPublishedPosts(req: Request, res: Response){
     const publishedPosts = await getAllPublishedPosts();
@@ -55,7 +61,42 @@ export async function getNonPublishedPosts(req: Request, res: Response){
 //Function that will return a post based on id
 export async function getPost(req: Request, res: Response){
     const id = Number(req.params.id);
+
+    if(!Number.isInteger(id) || id <= 0){
+        return res.status(400).json({
+            message: "Invalid post ID"
+        })
+    }
+
+    const post = await getPublishedPostById(id);
+
+    if(!post){
+        return res.status(404).json({
+            message: "Post not found"
+        })
+    }
+
+    res.json(post);
+}
+
+//Function that will return a Admin post based on id
+export async function getAdminPost(req: Request, res: Response){
+    const id = Number(req.params.id);
+
+    if(!Number.isInteger(id) || id <= 0){
+        return res.status(400).json({
+            message: "Invalid post ID"
+        })
+    }
+
     const post = await getPostById(id);
+
+    if(!post){
+        return res.status(404).json({
+            message: "Post not found"
+        })
+    }
+
     res.json(post);
 }
 

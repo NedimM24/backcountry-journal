@@ -10,13 +10,16 @@ import { getPosts,
          getPublishedPostsByCategory,
          getPostCount,
          getDraftsCount,
-         getRecentPosts
+         getRecentPosts,
+         getPostsAdmin,
+         getAdminPost
          } from '../controllers/postController';
 
 import { verifyToken } from '../controllers/authController';
 import { validateCreatePost } from '../validation/validateCreatePost';
 import { validateUpdatePost } from '../validation/validateUpdatePost';
 import { isAdmin } from '../middleware/isAdmin';
+
 
 const postRouter = express.Router();
 
@@ -25,6 +28,7 @@ postRouter.post('/', verifyToken, isAdmin, validateCreatePost, createPost)
 
 //READ
 postRouter.get('/', verifyToken, getPosts)
+postRouter.get('/admin', verifyToken, isAdmin, getPostsAdmin)
 postRouter.get('/published', verifyToken, getPublishedPosts)
 postRouter.get('/featured', verifyToken, getFeaturedPost)
 postRouter.get('/non-published', verifyToken, isAdmin, getNonPublishedPosts)
@@ -32,6 +36,7 @@ postRouter.get("/count", verifyToken, isAdmin, getPostCount)
 postRouter.get("/recent", verifyToken, isAdmin, getRecentPosts)
 postRouter.get("/non-published/count", verifyToken, isAdmin, getDraftsCount)
 postRouter.get('/:id', verifyToken, getPost)
+postRouter.get('/admin/:id', verifyToken, getAdminPost)
 postRouter.get("/category/:category", verifyToken, getPublishedPostsByCategory)
 
 //UPDATE 
