@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import { getUserByEmail
  } from '../queries/userQueries';
 
+ import { jwtSecret } from '../config/env';
  import jwt from 'jsonwebtoken';
 
  export async function login(req: Request, res: Response){
@@ -27,7 +28,10 @@ import { getUserByEmail
                         userId: user.id,
                         userRole: user.role
                     },
-                    process.env.JWT_SECRET!
+                    jwtSecret,
+                    {
+                        expiresIn: '1h'
+                    }
                 );
                 res.json({
                     token,
@@ -58,7 +62,7 @@ import { getUserByEmail
         try {
             const decoded = jwt.verify(
                 bearerToken,
-                process.env.JWT_SECRET!
+                jwtSecret
             ) as {
                 userId: number,
                 userRole: string;
