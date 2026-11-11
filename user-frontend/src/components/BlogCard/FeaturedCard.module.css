@@ -71,9 +71,9 @@ img{
 }
 
 .bodyText{
-white-space: nowrap;
-overflow: hidden;
-text-overflow: ellipsis;
+white-space: normal;
+overflow-wrap: break-word;
+max-width: 100%;
 }
 
 .title{
@@ -95,5 +95,23 @@ text-overflow: ellipsis;
     .bottom{
         padding: 1.8rem;
         margin-bottom: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .bottom{
+        flex: 1;
+        padding: 2rem;
+        min-width: 0;
+        margin-bottom: 1rem;
+    }
+
+    .image{
+        width: 60%;
+        flex-shrink: 0;
+    }
+
+    .bodyText{
+        max-width: 100%;
     }
 }

@@ -66,7 +66,12 @@ export function FeaturedCard() {
         <div className={styles.bottom}>
           <h5 className={styles.category}>{post.category}</h5>
           <h3>{post.title}</h3>
-          <p className={styles.bodyText}>{post.bodyText}</p>
+
+          <p className={styles.bodyText}>
+            {post.bodyText.length > 50
+              ? `${post.bodyText.slice(0, 50)}...`
+              : post.bodyText}
+          </p>
           <p>
             <time className={styles.date} dateTime={post.timeStamp}>
               {new Date(post.timeStamp).toLocaleDateString("en-US", {

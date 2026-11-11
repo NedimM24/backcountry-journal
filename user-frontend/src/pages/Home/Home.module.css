@@ -29,20 +29,24 @@
     flex-direction: column;
     justify-content: flex-end;
     gap: 1rem;
-   
 }
+
+
 
 .header h2,
 .header h6 {
   margin: 0;
 }
 
+
+
+
 @media (min-width: 1024px) {
     .main{
         display: flex;
         flex-direction: column;
         justify-self: center;
-        width: 80%;
+        width: 90%;
         
     }
 }
