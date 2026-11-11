@@ -79,7 +79,7 @@ export function Drafts() {
 
               <div className={styles.bottom}>
                 <h5 className={styles.category}>{blog.category}</h5>
-                <h3>{blog.title}</h3>
+                <h3 className={styles.title}>{blog.title}</h3>
 
                 <p className={styles.bodyText}>
                   {blog.bodyText.length > 50
