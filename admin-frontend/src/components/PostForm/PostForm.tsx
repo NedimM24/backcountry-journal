@@ -22,7 +22,7 @@ export function PostForm() {
     setValidationErrors([]);
     setSubmitError(null);
     setIsLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     //OBJECT THAT HOLDS THE USERS INPUTTED DATA
     const userData = {
       ...newPost,

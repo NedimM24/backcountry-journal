@@ -22,7 +22,7 @@ export function EditPost() {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/posts/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/posts/admin/${id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

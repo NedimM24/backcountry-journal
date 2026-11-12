@@ -16,7 +16,7 @@ export function MobileNav() {
       <header className={styles.mobileHeader}>
         <button
           type="button"
-          className="btn"
+          className={styles.menuBtn}
           onClick={() => setOpen((current) => !current)}
           aria-expanded={open}
           aria-controls="mobile-navigation"

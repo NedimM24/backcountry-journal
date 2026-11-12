@@ -1,7 +1,6 @@
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Comments from "../../components/CommentsList/Comments";
-import { DeleteButton } from "../../components/DeleteButton/DeleteButton";
 import styles from "./ViewPost.module.css";
 import mountainImage from "../../assets/m5.jpg";
 
@@ -20,7 +19,6 @@ export function ViewPost() {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [error, setError] = useState<string | null>(null);
   const { id } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchPostById() {
@@ -28,7 +26,7 @@ export function ViewPost() {
         setError(null);
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/posts/${id}`,
+          `${import.meta.env.VITE_API_URL}/api/posts/admin/${id}`,
           {
             method: "GET",
             headers: {
@@ -78,7 +76,11 @@ export function ViewPost() {
             </p>
           </div>
 
-          <img className={styles.image} src={mountainImage} alt={post.title} />
+          <img
+            className={styles.image}
+            src={post.coverImage || mountainImage}
+            alt={post.title}
+          />
           <p className={styles.bodyText}>{post.bodyText}</p>
         </main>
 
