@@ -29,11 +29,9 @@ export function AuthForm({ mode }: AuthFormProps) {
     if (isSignUp) {
       //CONFIRM PW CHECK
       if (password !== confirmPassword) {
-        console.log("Passwords do not match");
         return;
       }
       setIsLoading(true);
-      console.log("Loading:", true);
 
       //OBJECT THAT HOLDS THE USERS INPUTTED DATA
       const userData = {
@@ -56,17 +54,13 @@ export function AuthForm({ mode }: AuthFormProps) {
           },
         );
 
-        const data = await response.json();
-
         if (!response.ok) {
-          console.log(data.message || "Signup Failed");
           return;
         }
 
-        console.log(data);
         navigate("/login");
       } catch (error) {
-        console.log("Error creating user:", error);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }
@@ -92,7 +86,6 @@ export function AuthForm({ mode }: AuthFormProps) {
         const data = await response.json();
 
         if (!response.ok) {
-          console.log(data.message || "Login Failed");
           return;
         }
 
@@ -102,7 +95,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         //IF ALL GOES WELL, SEND THE USER TO HOME PAGE
         navigate("/");
       } catch (error) {
-        console.log("Error logging in:", error);
+        console.error(error);
       } finally {
         setIsLoading(false);
       }

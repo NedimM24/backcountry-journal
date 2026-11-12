@@ -20,10 +20,6 @@ export function BlogCard({ post }: BlogCardProps) {
     post.coverImage && post.coverImage !== "null"
       ? post.coverImage
       : mountainImage;
-  console.log("Value:", post.coverImage);
-  console.log("Type:", typeof post.coverImage);
-  console.log("Strict null check:", post.coverImage === null);
-  console.log("Fallback:", post.coverImage ?? mountainImage);
   return (
     <div className={styles.container}>
       <img className={styles.image} src={imageSrc} alt={post.title} />

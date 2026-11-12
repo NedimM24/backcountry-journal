@@ -41,8 +41,6 @@ function BlogPage() {
           throw new Error("Failed to fetch post");
         }
         const data = await response.json();
-        console.log("coverImage:", data.coverImage);
-        console.log("type:", typeof data.coverImage);
         setPost(data);
       } catch (error) {
         if (error instanceof Error) {
