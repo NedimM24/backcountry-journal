@@ -21,8 +21,8 @@ export function BlogGrid({ category }: BlogPostProps) {
 
   //EITHER A CERTAIN CATEGORY(CLICKED BY THE USER ON THE FRONTEND NAVBAR) OR ALL
   const url = category
-    ? `http://localhost:3000/api/posts/category/${encodeURIComponent(category)}`
-    : "http://localhost:3000/api/posts/published";
+    ? `${import.meta.env.VITE_API_URL}/api/posts/category/${encodeURIComponent(category)}`
+    : `${import.meta.env.VITE_API_URL}/api/posts/published`;
 
   useEffect(() => {
     async function fetchAllPosts() {

@@ -21,7 +21,7 @@ export function FeaturedCard() {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          "http://localhost:3000/api/posts/featured",
+          `${import.meta.env.VITE_API_URL}/api/posts/featured`,
           {
             method: "GET",
             headers: {
