@@ -29,7 +29,7 @@ export function Drafts() {
         const token = localStorage.getItem("token");
         //RETURNS ALL PUBLISHED POSTS
         const response = await fetch(
-          "http://localhost:3000/api/posts/non-published",
+          `${import.meta.env.VITE_API_URL}/api/posts/non-published`,
           {
             method: "GET",
             headers: {

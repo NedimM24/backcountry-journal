@@ -28,12 +28,15 @@ export function AdminPostCard() {
       try {
         const token = localStorage.getItem("token");
         //RETURNS ALL PUBLISHED POSTS
-        const response = await fetch("http://localhost:3000/api/posts", {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/posts`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           },
-        });
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch posts");
         }

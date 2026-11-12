@@ -74,7 +74,7 @@ function Comments({ postId }: CommentsProps) {
       const token = localStorage.getItem("token");
       //RETURNS ALL COMMENTS TIED TO POST ID
       const response = await fetch(
-        `http://localhost:3000/api/posts/${postId}/comments`,
+        `${import.meta.env.VITE_API_URL}/api/posts/${postId}/comments`,
         {
           method: "POST",
           headers: {
@@ -94,7 +94,7 @@ function Comments({ postId }: CommentsProps) {
 
       //FETCH UPDATED COMMENTS LIST
       const commentsResponse = await fetch(
-        `http://localhost:3000/api/posts/${postId}/comments`,
+        `${import.meta.env.VITE_API_URL}/api/posts/${postId}/comments`,
         {
           method: "GET",
           headers: {
@@ -126,7 +126,7 @@ function Comments({ postId }: CommentsProps) {
         const token = localStorage.getItem("token");
         //RETURNS ALL COMMENTS TIED TO POST ID
         const response = await fetch(
-          `http://localhost:3000/api/posts/${postId}/comments`,
+          `${import.meta.env.VITE_API_URL}/api/posts/${postId}/comments`,
           {
             method: "GET",
             headers: {

@@ -21,7 +21,7 @@ function Dashboard() {
         try {
           const token = localStorage.getItem("token");
           const response = await fetch(
-            "http://localhost:3000/api/posts/count",
+            `${import.meta.env.VITE_API_URL}/api/posts/count`,
             {
               method: "GET",
               headers: {
@@ -48,7 +48,7 @@ function Dashboard() {
         try {
           const token = localStorage.getItem("token");
           const response = await fetch(
-            "http://localhost:3000/api/posts/non-published/count",
+            `${import.meta.env.VITE_API_URL}/api/posts/non-published/count`,
             {
               method: "GET",
               headers: {
@@ -75,7 +75,7 @@ function Dashboard() {
         try {
           const token = localStorage.getItem("token");
           const response = await fetch(
-            "http://localhost:3000/api/comments/count",
+            `${import.meta.env.VITE_API_URL}/api/comments/count`,
             {
               method: "GET",
               headers: {
