@@ -4,6 +4,7 @@ import { createUser,
  } from '../controllers/userController';
 
 import { validateCreateUser } from '../validation/validateCreateUser';
+import { verifyToken } from '../controllers/authController';
 
 const userRouter = express.Router();
 
@@ -11,7 +12,7 @@ const userRouter = express.Router();
 userRouter.post('/', validateCreateUser, createUser)
 
 //READ
-userRouter.get('/:id', getUser)
+userRouter.get('/:id', verifyToken, getUser)
 
 //UPDATE
 

@@ -14,7 +14,7 @@ import { getUserByEmail
         //CHECK IF THERE IS A USER
         const user = await getUserByEmail(userEmail);
         if(!user){
-            console.log("User not found");
+            console.error("Login operation failed");
             res.status(404).json({message: "User not found"})
             return;
         }
@@ -38,9 +38,7 @@ import { getUserByEmail
                     role: user.role,
                 });
 
-                console.log('Authentication Successful;');
             } else {
-                console.log('Invalid Password');
                 res.status(401).json({message: "Incorrect password"})
             }
     } catch(error){
@@ -53,12 +51,10 @@ import { getUserByEmail
  export function verifyToken(req: Request, res: Response, next: NextFunction){
     //GET AUTH HEADER VALUE
     const bearerHeader = req.headers['authorization'];
-    console.log("AUTH HEADER:", bearerHeader);
     //CHECK IF BEARER IS UNDEFINED
     if(typeof bearerHeader !== 'undefined'){
         //SEPERATES THE STRING 'BEARER' AND THE ACTUAL TOKEN
         const bearer = bearerHeader.split(" ");
-
         const bearerToken = bearer[1];
         try {
             const decoded = jwt.verify(
@@ -68,9 +64,7 @@ import { getUserByEmail
                 userId: number,
                 userRole: string;
             };
-            console.log("Token Verified");
-            console.log(decoded);
-
+           
             res.locals.userId = decoded.userId;
             res.locals.userRole = decoded.userRole;
 

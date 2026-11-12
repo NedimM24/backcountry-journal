@@ -17,7 +17,7 @@ export const validateUpdatePost = [
         .withMessage("Cover image must be a valid URL."),
     body("category")
         .optional()
-        .isIn(["Hiking", "Gear", "Camping", "Backpacking", ])
+        .isIn(["Hiking", "Gear", "Camping", "Backpacking", "Other" ])
         .withMessage("Invalid category."),
     body("isPublished")
         .optional()

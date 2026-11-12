@@ -36,7 +36,7 @@ postRouter.get("/count", verifyToken, isAdmin, getPostCount)
 postRouter.get("/recent", verifyToken, isAdmin, getRecentPosts)
 postRouter.get("/non-published/count", verifyToken, isAdmin, getDraftsCount)
 postRouter.get('/:id', verifyToken, getPost)
-postRouter.get('/admin/:id', verifyToken, getAdminPost)
+postRouter.get('/admin/:id', verifyToken, isAdmin, getAdminPost)
 postRouter.get("/category/:category", verifyToken, getPublishedPostsByCategory)
 
 //UPDATE 

@@ -190,7 +190,6 @@ export async function updatePost(req: Request, res: Response){
 
 //DELETE
 export async function deletePost(req: Request, res: Response){
-    console.log("REACHED DELETE CONTROLLER");
     const id = Number(req.params.id)
     await deletePostQuery(id);
     res.sendStatus(204)
