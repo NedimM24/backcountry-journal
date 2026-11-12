@@ -44,7 +44,8 @@ import { getUserByEmail
                 res.status(401).json({message: "Incorrect password"})
             }
     } catch(error){
-            console.log("Error durring password check", error);
+            console.error("Error logging in", error);
+            res.status(500).json({message: "Internal server error"})
     }  
  }
 
