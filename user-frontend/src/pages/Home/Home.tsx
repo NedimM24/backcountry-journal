@@ -3,7 +3,6 @@ import styles from "./Home.module.css";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { FeaturedCard } from "../../components/BlogCard/FeaturedCard";
 import { BlogGrid } from "../../components/BlogCard/BlogGrid";
-import cartoonMountainImageLarge from "../../assets/trail_background_2440x1440.png";
 import cartoonMountainImageSmall from "../../assets/trail_background_iphone_landscape_2556x1179.png";
 import { Link } from "react-router-dom";
 

@@ -93,7 +93,11 @@ function BlogPage() {
             </p>
           </div>
 
-          <img className={styles.image} src={mountainImage} alt={post.title} />
+          <img
+            className={styles.image}
+            src={post.coverImage || mountainImage}
+            alt={post.title}
+          />
           <p className={styles.bodyText}>{post.bodyText}</p>
         </main>
 

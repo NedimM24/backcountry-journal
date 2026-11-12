@@ -4,7 +4,6 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { BlogGrid } from "../../components/BlogCard/BlogGrid";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import cartoonMountainImageLarge from "../../assets/trail_background_2440x1440.png";
 import cartoonMountainImageSmall from "../../assets/trail_background_iphone_landscape_2556x1179.png";
 
 function Category() {
