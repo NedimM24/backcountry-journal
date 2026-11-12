@@ -38,8 +38,6 @@ export function Drafts() {
           },
         );
         if (!response.ok) {
-          const errorText = await response.text();
-          console.error("Drafts request failed", response.status, errorText);
           throw new Error(`Failed to fetch posts (${response.status})`);
         }
         const data: BlogPost[] = await response.json();

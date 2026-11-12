@@ -33,8 +33,6 @@ export function EditPost() {
           throw new Error("Failed to fetch post");
         }
         const data = await response.json();
-        console.log(data.category);
-
         setNewPost({
           coverImage: data.coverImage ?? "",
           title: data.title,
@@ -42,8 +40,8 @@ export function EditPost() {
           category: data.category.toLowerCase(),
           isPublished: data.isPublished,
         });
-      } catch (error) {
-        console.error(error);
+      } catch {
+        alert("Something went wrong. Please try again.");
       }
     }
     fetchPost();
