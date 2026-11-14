@@ -8,11 +8,17 @@ app.use(cors({
     origin: "http://localhost:5173"
 }));
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use('/api', router);
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        message: "Backcountry journal API is runnning"
+    })
+})
+
 app.listen(PORT, () => {
-    console.log(`Server running on port ${3000}`);
+    console.log(`Server running on port ${PORT}`);
     
 })
