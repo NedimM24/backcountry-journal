@@ -41,7 +41,7 @@ function Comments({ postId }: CommentsProps) {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/api/comments/${commentId}`,
+        `${import.meta.env.VITE_API_URL}/api/comments/${commentId}`,
         {
           method: "DELETE",
           headers: {
