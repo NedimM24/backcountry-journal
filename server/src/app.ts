@@ -7,7 +7,8 @@ app.use(express.json());
 
 const allowedOrigins = [
     "http://localhost:5173",
-     "https://backcountry-journal.vercel.app"
+     "https://backcountry-journal.vercel.app",
+     "https://backcountry-journal-admin.vercel.app"
 ];
 
 app.use(cors({
