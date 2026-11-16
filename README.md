@@ -2,6 +2,11 @@
 
 A full-stack outdoor blogging platform focused on hiking, camping, backpacking, fishing, and outdoor gear. Backcountry Journal features an authenticated reading experience, an administrative content management dashboard, and a REST API backed by PostgreSQL.
 
+## Live Demo
+
+- **User Blog:** [Visit Backcountry Journal](https://backcountry-journal.vercel.app/)
+- **Admin Dashboard:** [Visit Admin Dashboard](https://backcountry-journal-admin.vercel.app)
+
 ---
 
 # Features
