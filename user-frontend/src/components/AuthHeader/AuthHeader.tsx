@@ -1,5 +1,6 @@
 import styles from "./AuthHeader.module.css";
-import mountainImage from "../../assets/m5.jpg";
+// import mountainImage from "../../assets/m5.jpg";
+import mountainImage from "../../assets/m5-optimized.jpg";
 
 export function AuthHeader() {
   return (
