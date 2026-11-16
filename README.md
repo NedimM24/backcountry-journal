@@ -2,10 +2,9 @@
 
 A full-stack outdoor blogging platform focused on hiking, camping, backpacking, fishing, and outdoor gear. Backcountry Journal features an authenticated reading experience, an administrative content management dashboard, and a REST API backed by PostgreSQL.
 
-<img width="1115" height="1149" alt="image" src="https://github.com/user-attachments/assets/39bac2b6-74c3-4029-8b4a-fa7de1adda8c" />
-
-
 <img width="1387" height="1158" alt="image" src="https://github.com/user-attachments/assets/e4c1e809-9d31-4b46-b327-bbb110d0fd69" />
+
+<img width="1115" height="1149" alt="image" src="https://github.com/user-attachments/assets/39bac2b6-74c3-4029-8b4a-fa7de1adda8c" />
 
 
 <img width="1398" height="1155" alt="image" src="https://github.com/user-attachments/assets/c732fed5-9a8b-4d68-b392-8d893fc49fb4" />
