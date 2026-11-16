@@ -39,9 +39,22 @@ export async function getAllPostsAdmin(){
 
 export async function getAllPublishedPosts(){
     const publishedPosts = await prisma.post.findMany({
-        where: {isPublished: true}
+        where: {isPublished: true},
+        select: {
+            id: true,
+            title: true,
+            coverImage: true,
+            category: true, 
+            timeStamp: true,
+            bodyText: true
+        }
     });
-    return publishedPosts;
+    return publishedPosts.map(post => ({
+        ...post,
+        bodyText: post.bodyText.length > 50 
+            ? `${post.bodyText.slice(0, 50)}...` 
+            : post.bodyText
+    }));
 }
 
 export async function getAllNonPublishedPosts(){
