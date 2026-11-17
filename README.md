@@ -14,9 +14,9 @@ A full-stack outdoor blogging platform focused on hiking, camping, backpacking, 
 
 
 ## Live Demo
-
+USERNAME: admin@gmail.com, PW: Password123
 - **User Blog:** [Visit Backcountry Journal](https://backcountry-journal.vercel.app/)
-- **Admin Dashboard:** [Visit Admin Dashboard](https://backcountry-journal-admin.vercel.app) USERNAME: admin@gmail.com, PW: Password123
+- **Admin Dashboard:** [Visit Admin Dashboard](https://backcountry-journal-admin.vercel.app) 
 
 ---
 
